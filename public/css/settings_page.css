@@ -1,0 +1,68 @@
+body{
+  font-family: 'Montserrat', sans-serif;
+}
+
+.page-settings__main{
+  position: relative;
+}
+.auth-data__main{
+  font-size:30px;
+  padding-left: 30px;
+}
+.auth-data__header{
+  margin-top: 30px;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 32px;
+  /* or 80% */
+
+  letter-spacing: 0.1px;
+  padding-left: 30px;
+}
+.form__input-field{
+  width: 400px;
+  height: 53px;
+  border: transparent;
+  background-color: #D9D9D9;
+  font-size: 25px;
+}
+
+.form__submit-btn{
+  background: #00FF38;
+  border-radius: 16px;
+  width: 348px;
+  height: 60px;
+  align-content: center;
+  border: transparent;
+}
+
+.submit-btn__text{
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 32px;
+  /* identical to box height, or 80% */
+  justify-content: center;
+  display: flex;
+  align-content: center;
+  letter-spacing: 0.1px;
+  color: #FFFFFF;
+}
+.button__back{
+  color:white;
+  text-decoration: none;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  border-radius: 16px;
+  width: 348px;
+  height: 60px;
+  font-weight: 500;
+  font-size: 40px;
+  /* identical to box height, or 80% */
+  display: flex;
+  letter-spacing: 0.1px;
+  background: rgba(189, 0, 255, 0.5);
+  margin-top: 30px;
+
+}
+

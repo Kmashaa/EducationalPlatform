@@ -1,0 +1,128 @@
+body{
+  font-family: 'Montserrat', sans-serif;
+}
+
+
+.course-data__main{
+  font-size:30px;
+  padding-left: 50px;
+
+}
+.course-data__header{
+  margin-top: 30px;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 32px;
+  /* or 80% */
+
+  letter-spacing: 0.1px;
+  padding-left: 30px;
+}
+.main__course{
+  /*margin-top: 30px;*/
+  /*height:100px;*/
+
+  height:270px;
+  overflow: hidden;
+  overflow-y: scroll;
+
+}
+
+.main__course::-webkit-scrollbar {
+  display: none;
+}
+.course__text{
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 45px;
+  /* or 200% */
+
+  letter-spacing: 0.1px;
+
+  color: #000000;
+}
+
+.button__back{
+  margin-top: 0px;
+  background: rgba(189, 0, 255, 0.5);
+}
+
+.button__lessons{
+  margin-right: 10px;
+  background: rgba(250, 0, 255, 0.5);
+}
+
+.button__comments{
+  margin-right: 10px;
+  background: rgba(0, 148, 255, 0.5);
+}
+
+.button__test{
+  margin-right: 10px;
+  background: rgba(0, 255, 87, 0.5);
+}
+
+.buttons{
+  margin-left: 50px;
+}
+.button__back, .button__lessons, .button__comments, .button__test{
+  color:white;
+  text-decoration: none;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  border-radius: 16px;
+  width: 348px;
+  height: 60px;
+  font-weight: 500;
+  font-size: 40px;
+  /* identical to box height, or 80% */
+  display: flex;
+  letter-spacing: 0.1px;
+  margin-top: 10px;
+}
+
+.buttons__list{
+  display: inline-flex;
+}
+
+.buttons__list, .courses-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 4px;
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  /*height: 200px;*/
+  align-content: flex-end;
+}
+/*Mobile version styles*/
+@media screen and (max-width: 1000px) {
+  .courses-list{
+    height: 70%;
+  }
+
+  .buttons__list, .courses-list{
+    list-style-type: none;
+    margin: 0;
+    padding: 4px;
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    /*height: 300px;*/
+
+
+  }
+
+  .themes-data__header, .courses-data__header {
+    margin-bottom: 20px;
+  }
+  .button__back{
+
+    margin-bottom: 40px;
+  }
+
+}
+

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Profile</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/profile_page.css"/>
+  <link rel="stylesheet" href="css/header.css"/>
+</head>
+<body>
+
+<header class="header">
+  <nav class="nav">
+    <div class="buttons_home">
+      <ul class="home__items">
+        <li class="home__item">
+          <a class="button_learning_platform" href="home_page.html"> Learning</br>platform </a>
+        </li>
+        <li class="home__item">
+          <a class="button_home_page" href="home_page.html"> Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="buttons_profile" id="buttons_profile"></div>
+    <div class="buttons_sign" id="buttons_sign"></div>
+  </nav>
+</header>
+
+<main class="page-profile__main">
+  <section class="main__auth-data">
+    <header class="auth-data__header" id="auth-data__header"></header>
+    <main class="auth-data__main">
+      <div class="buttons">
+      <img class="profile_image" src="https://cdn-icons-png.flaticon.com/512/290/290259.png">
+      <a class="button__courses" href="my_courses_list_page.html">My courses</a>
+        <div class="log_out">
+      <a class="button__log-out" href="home_page.html">Log out</a>
+        </div>
+      </div>
+      <div class="top-courses">
+      <header class="top-courses__header">
+        Latest courses
+      </header>
+      <main class="courses-data__main">
+        <section class="courses" id="courses">
+          <ul class="courses-list" id="courses-list"></ul>
+        </section>
+      </main>
+      </div>
+    </main>
+  </section>
+  </div>
+</main>
+<script type="module" src="js/profile_page.js"></script>
+<script type="module" src="js/header.js"></script>
+
+</body>
+</html>

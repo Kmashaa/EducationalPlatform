@@ -1,0 +1,85 @@
+.button_learning_platform {
+  font-weight: bold;
+}
+
+.button_learning_platform, .button_home_page, .button_sign_in, .button_sign_up, .button__profile {
+  color: black;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.button_sign_in, .button_sign_up, .button__profile {
+  width: 100px;
+  height: 60px;
+  background: #FA00FF;
+  border-radius: 8px;
+  margin-right: 10px;
+  font-size: 20px;
+  line-height: 32px;
+  letter-spacing: 0.1px;
+  color: #000000;
+  padding-left: 20px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.home__item, .sign__item {
+  display: inline;
+  margin-right: 50px; /* Отступ слева */
+  padding: 3px; /* Поля вокруг текста */
+
+}
+
+.home__items, .sign__items {
+  margin: 0;
+  padding: 4px;
+
+}
+
+.sign__items {
+  position: relative;
+  top: 25px;
+  right: 0px;
+
+}
+
+.buttons_home {
+
+  width: 50%;
+  float: left;
+  padding: 0px;
+  height: 60px;
+  box-sizing: border-box;
+}
+
+.buttons_sign, .buttons_profile {
+  /*padding-right: 327px;*/
+  display: flex;
+  width: 20%;
+  float: left;
+
+  /*float: right;*/
+  height: 70px;
+  box-sizing: border-box;
+  justify-content: flex-end;
+  flex-direction: row;
+}
+
+
+.header {
+  width: 96%;
+  height: 50px;
+}
+
+
+@media screen and (max-width: 1000px) {
+  .header {
+    height: 100px;
+  }
+
+  .button_sign_in, .button_sign_up, .button__profile {
+    height: auto;
+
+
+  }
+}

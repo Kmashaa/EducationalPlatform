@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Test</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/test_page.css"/>
+  <link rel="stylesheet" href="css/header.css"/>
+</head>
+<body>
+<header class="header">
+  <nav class="nav">
+    <div class="buttons_home">
+      <ul class="home__items">
+        <li class="home__item">
+          <a class="button_learning_platform" href="home_page.html"> Learning</br>platform </a>
+        </li>
+        <li class="home__item">
+          <a class="button_home_page" href="home_page.html"> Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="buttons_profile" id="buttons_profile"></div>
+    <div class="buttons_sign" id="buttons_sign"></div>
+  </nav>
+</header>
+<main class="page-test__main">
+  <header class="name-test__header" id="name-test__header"></header>
+  <form class="main__form" action="result_page.html" method="get" id="testForm" name="test">
+    <section class="main__questions">
+      <ul class="questions-list" id="questions-list"></ul>
+    </section>
+
+    <section class="buttons">
+      <div class="buttons-list" id="buttons-list"></div>
+    </section>
+
+  </form>
+</main>
+<script type="module" src="js/test_page.js"></script>
+<script type="module" src="js/header.js"></script>
+
+</body>
+</html>
