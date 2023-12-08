@@ -213,7 +213,7 @@ body{
 .day_of_week_time{
   width:100px;
 }
-.cell{
+.used_cell{
   width: 250px;
   height: 100px;
   left: 0px;
@@ -229,6 +229,24 @@ body{
   /*padding-left: 22px;*/
   /*padding-top: 30px;*/
   background: rgba(0, 255, 209, 0.5);
+
+}
+.unused_cell{
+  width: 250px;
+  height: 100px;
+  left: 0px;
+  top: -1px;
+  padding:10px;
+
+
+  border-radius: 30px;
+
+  margin-right: 5px; /* Отступ слева */
+  border: 0px; /* Рамка вокруг текста */
+
+  /*padding-left: 22px;*/
+  /*padding-top: 30px;*/
+  background: rgba(255, 0, 0, 0.15);
 
 }
 

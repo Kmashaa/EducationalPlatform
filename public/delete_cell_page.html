@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>New comment</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/add_cell_page.css"/>
+  <link rel="stylesheet" href="css/header.css"/>
+</head>
+<body>
+<header class="header">
+  <nav class="nav">
+    <div class="buttons_home">
+      <ul class="home__items">
+        <li class="home__item">
+          <a class="button_learning_platform" href="home_page.html"> Learning</br>platform </a>
+        </li>
+        <li class="home__item">
+          <a class="button_home_page" href="home_page.html"> Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="buttons_profile" id="buttons_profile"></div>
+    <div class="buttons_sign" id="buttons_sign"></div>
+  </nav>
+</header>
+<main class="page-new-comment__main">
+  <section class="main__auth-data">
+    <header class="auth-data__header">
+      Delete cell
+    </header>
+    <main class="auth-data__main">
+      <form class="main__form" action="profile_page.html" method="get" id="authForm" name="add_cell">
+        <br>
+
+        <label for="day_of_week">Day of week</label><br>
+        <select class="day_of_week" name="day_of_week" id="day_of_week"></select>
+        <label for="time">Time</label><br>
+        <select class = "time" name="time" id="time"></select>
+        <br>
+        <button class="form__submit-btn" type="submit">
+          <b class="submit-btn__text">Delete cell</b>
+        </button>
+      </form>
+      <a class="button__back" href="profile_page.html">Back</a>
+
+
+    </main>
+  </section>
+</main>
+<script type="module" src="js/header.js"></script>
+<script type="module" src="js/delete_cell_page.js"></script>
+
+</body>
+</html>
