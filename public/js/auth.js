@@ -57,7 +57,6 @@ export function register(email,password){
       document.cookie = "uid" + "=" + user.uid;
       document.cookie="username"+"="+email.split("@")[0];
       window.location.href="profile_page.html";
-      // ...
     })
     .catch((error) => {
       const errorCode = error.code;

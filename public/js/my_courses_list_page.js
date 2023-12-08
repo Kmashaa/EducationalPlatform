@@ -69,12 +69,14 @@ let counter_color=0;
 let counter_course=0;
 let theme=themes__list;
 
-let temp_c=localStorage.getItem('my_courses').split(",");
+// let temp_c=localStorage.getItem('my_courses').split(",");
+let temp_c=localStorage.getItem('my_courses');
+
 let temp=[];
 let i=0;
 
 while(i<temp_c.length){
-  temp[i]=temp_c[i];
+  temp[i]=temp_c;
   i=i+1;
 }
 while(counter_course<=temp.length){
