@@ -7,6 +7,7 @@ let themes__list = {
   courses: {
     name: "Foundations of math",
     descr: "First step",
+    times_a_week:3,
     num: 4.9,
     href: "course_information_page.html",
     next: {
@@ -76,7 +77,7 @@ let cells_list = {
     "used": "False",
     "next": {
       "time": "01:00-02:00",
-      "used": "True",
+      "used": "False",
       "next": {
         "time": "02:00-03:00",
         "used": "False",
@@ -88,7 +89,7 @@ let cells_list = {
             "used": "False",
             "next": {
               "time": "05:00-06:00",
-              "used": "True",
+              "used": "False",
               "next": {
                 "time": "06:00-07:00",
                 "used": "False",
@@ -97,7 +98,7 @@ let cells_list = {
                   "used": "True",
                   "next": {
                     "time": "08:00-09:00",
-                    "used": "True",
+                    "used": "False",
                     "next": {
                       "time": "09:00-10:00",
                       "used": "False",
@@ -106,7 +107,7 @@ let cells_list = {
                         "used": "False",
                         "next": {
                           "time": "11:00-12:00",
-                          "used": "True",
+                          "used": "False",
                           "next": {
                             "time": "12:00-13:00",
                             "used": "False",
@@ -127,7 +128,7 @@ let cells_list = {
                                       "used": "False",
                                       "next": {
                                         "time": "18:00-19:00",
-                                        "used": "True",
+                                        "used": "False",
                                         "next": {
                                           "time": "19:00-20:00",
                                           "used": "False",
@@ -188,10 +189,10 @@ let cells_list = {
               "used": "False",
               "next": {
                 "time": "05:00-06:00",
-                "used": "True",
+                "used": "False",
                 "next": {
                   "time": "06:00-07:00",
-                  "used": "True",
+                  "used": "False",
                   "next": {
                     "time": "07:00-08:00",
                     "used": "False",
@@ -212,7 +213,7 @@ let cells_list = {
                               "used": "False",
                               "next": {
                                 "time": "13:00-14:00",
-                                "used": "True",
+                                "used": "False",
                                 "next": {
                                   "time": "14:00-15:00",
                                   "used": "False",
@@ -221,7 +222,7 @@ let cells_list = {
                                     "used": "False",
                                     "next": {
                                       "time": "16:00-17:00",
-                                      "used": "True",
+                                      "used": "False",
                                       "next": {
                                         "time": "17:00-18:00",
                                         "used": "False",
@@ -233,7 +234,7 @@ let cells_list = {
                                             "used": "False",
                                             "next": {
                                               "time": "20:00-21:00",
-                                              "used": "True",
+                                              "used": "False",
                                               "next": {
                                                 "time": "21:00-22:00",
                                                 "used": "False",
@@ -276,31 +277,31 @@ let cells_list = {
         "used": "False",
         "next": {
           "time": "01:00-02:00",
-          "used": "True",
+          "used": "False",
           "next": {
             "time": "02:00-03:00",
             "used": "False",
             "next": {
               "time": "03:00-04:00",
-              "used": "True",
+              "used": "False",
               "next": {
                 "time": "04:00-05:00",
                 "used": "False",
                 "next": {
                   "time": "05:00-06:00",
-                  "used": "True",
+                  "used": "False",
                   "next": {
                     "time": "06:00-07:00",
                     "used": "False",
                     "next": {
                       "time": "07:00-08:00",
-                      "used": "True",
+                      "used": "False",
                       "next": {
                         "time": "08:00-09:00",
                         "used": "False",
                         "next": {
                           "time": "09:00-10:00",
-                          "used": "True",
+                          "used": "False",
                           "next": {
                             "time": "10:00-11:00",
                             "used": "False",
@@ -382,19 +383,19 @@ let cells_list = {
               "used": "False",
               "next": {
                 "time": "03:00-04:00",
-                "used": "True",
+                "used": "False",
                 "next": {
                   "time": "04:00-05:00",
                   "used": "False",
                   "next": {
                     "time": "05:00-06:00",
-                    "used": "True",
+                    "used": "False",
                     "next": {
                       "time": "06:00-07:00",
-                      "used": "True",
+                      "used": "False",
                       "next": {
                         "time": "07:00-08:00",
-                        "used": "True",
+                        "used": "False",
                         "next": {
                           "time": "08:00-09:00",
                           "used": "False",
@@ -415,13 +416,13 @@ let cells_list = {
                                     "used": "False",
                                     "next": {
                                       "time": "14:00-15:00",
-                                      "used": "True",
+                                      "used": "False",
                                       "next": {
                                         "time": "15:00-16:00",
-                                        "used": "True",
+                                        "used": "False",
                                         "next": {
                                           "time": "16:00-17:00",
-                                          "used": "True",
+                                          "used": "False",
                                           "next": {
                                             "time": "17:00-18:00",
                                             "used": "False",
@@ -476,13 +477,13 @@ let cells_list = {
             "used": "False",
             "next": {
               "time": "01:00-02:00",
-              "used": "True",
+              "used": "False",
               "next": {
                 "time": "02:00-03:00",
                 "used": "False",
                 "next": {
                   "time": "03:00-04:00",
-                  "used": "True",
+                  "used": "False",
                   "next": {
                     "time": "04:00-05:00",
                     "used": "False",
@@ -494,7 +495,7 @@ let cells_list = {
                         "used": "False",
                         "next": {
                           "time": "07:00-08:00",
-                          "used": "True",
+                          "used": "False",
                           "next": {
                             "time": "08:00-09:00",
                             "used": "False",
@@ -573,28 +574,28 @@ let cells_list = {
             "day": "Saturday",
             "times": {
               "time": "00:00-01:00",
-              "used": "True",
+              "used": "False",
               "next": {
                 "time": "01:00-02:00",
                 "used": "False",
                 "next": {
                   "time": "02:00-03:00",
-                  "used": "True",
+                  "used": "False",
                   "next": {
                     "time": "03:00-04:00",
-                    "used": "True",
+                    "used": "False",
                     "next": {
                       "time": "04:00-05:00",
                       "used": "False",
                       "next": {
                         "time": "05:00-06:00",
-                        "used": "True",
+                        "used": "False",
                         "next": {
                           "time": "06:00-07:00",
                           "used": "False",
                           "next": {
                             "time": "07:00-08:00",
-                            "used": "True",
+                            "used": "False",
                             "next": {
                               "time": "08:00-09:00",
                               "used": "False",
@@ -612,7 +613,7 @@ let cells_list = {
                                       "used": "False",
                                       "next": {
                                         "time": "13:00-14:00",
-                                        "used": "True",
+                                        "used": "False",
                                         "next": {
                                           "time": "14:00-15:00",
                                           "used": "False",
@@ -639,10 +640,10 @@ let cells_list = {
                                                         "used": "False",
                                                         "next": {
                                                           "time": "22:00-23:00",
-                                                          "used": "True",
+                                                          "used": "False",
                                                           "next": {
                                                             "time": "23:00-24:00",
-                                                            "used": "True",
+                                                            "used": "False",
                                                             "next": null
 
                                                           }
@@ -676,25 +677,25 @@ let cells_list = {
                 "used": "False",
                 "next": {
                   "time": "01:00-02:00",
-                  "used": "True",
+                  "used": "False",
                   "next": {
                     "time": "02:00-03:00",
                     "used": "False",
                     "next": {
                       "time": "03:00-04:00",
-                      "used": "True",
+                      "used": "False",
                       "next": {
                         "time": "04:00-05:00",
                         "used": "False",
                         "next": {
                           "time": "05:00-06:00",
-                          "used": "True",
+                          "used": "False",
                           "next": {
                             "time": "06:00-07:00",
                             "used": "False",
                             "next": {
                               "time": "07:00-08:00",
-                              "used": "True",
+                              "used": "False",
                               "next": {
                                 "time": "08:00-09:00",
                                 "used": "False",
@@ -790,7 +791,9 @@ while (cell) {
   cell = cell.next;
 
 }
-
+let counter=0;
+let arr=[0,2,4];
+let arr_counter=0;
 let cell2=cells_list;
 while(cell2) {
   let times = cell2.times;
@@ -799,12 +802,32 @@ while(cell2) {
     let time = times.time;
     let td=document.createElement('td');
     td.value=times.used;
-    td.textContent="ячейка";
+    //td.textContent="ячейка";
     if (times.used=="True"){
+
+
+      if (counter==arr[arr_counter]) {
+        if (arr_counter <= arr[arr.length - 2]) {
+          let a = document.createElement('a');
+          a.textContent = "Foundations of math";
+          a.href = "course_information_page.html";
+          a.className="course_link";
+          td.append(a);
+          arr_counter=arr_counter+1;
+
+        }
+
+      }
+      else{
+        td.textContent="ячейка";
+
+      }
+      counter = counter + 1;
+
       td.className="used_cell"
     }
     if (times.used=="False"){
-      td.textContent="empty";
+      // td.textContent="empty";
 
       td.className="unused_cell"
     }
@@ -906,3 +929,6 @@ document.querySelector('.log_out').onclick = function (e) {
 //   sessionStorage.setItem('courseName', e.target.textContent); // Сохранить значение в sessionStorage
 // };
 
+document.querySelector('.schedule-table').onclick = function(e) {
+  sessionStorage.setItem('courseName', e.target.textContent); // Сохранить значение в sessionStorage
+};
