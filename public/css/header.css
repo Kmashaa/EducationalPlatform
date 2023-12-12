@@ -35,6 +35,9 @@
   padding: 4px;
 
 }
+.buttons{
+  /*display:flex;*/
+}
 
 .sign__items {
   position: relative;
@@ -42,10 +45,13 @@
   right: 0px;
 
 }
-
+.nav{
+  display: flex;
+  justify-content: space-between;
+}
 .buttons_home {
 
-  width: 50%;
+  width: 80%;
   float: left;
   padding: 0px;
   height: 60px;
@@ -80,6 +86,9 @@
   .button_sign_in, .button_sign_up, .button__profile {
     height: auto;
 
-
   }
+}
+
+.buttons_profile{
+  width: 120px;
 }

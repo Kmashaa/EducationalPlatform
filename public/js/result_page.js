@@ -41,6 +41,7 @@ document.getElementById("result").append(res_text);
 document.getElementById("button_profile").textContent = "Profile";
 
 
+// localStorage.setItem('my_courses',[]);
 
 
 

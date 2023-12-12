@@ -6,15 +6,15 @@ if(getCookie("uid")){
   button__profile.className="button__profile";
   button__profile.textContent="Profile";
   button__profile.href="profile_page.html";
-  document.getElementById('buttons_sign').append(button__profile);
+  document.getElementById('buttons_profile').append(button__profile);
 
   let button__logout=document.createElement('a');
   button__logout.className="button_sign_up";
   button__logout.textContent="Log out";
   button__logout.href="home_page.html";
   document.getElementById('buttons_sign').append(button__logout);
-  document.getElementById('buttons_sign').style.width="50%";
-  document.getElementById('buttons_profile').style.width="0px";
+  // document.getElementById('buttons_sign').style.width="50%";
+  // document.getElementById('buttons_profile').style.width="0px";
 
 
 

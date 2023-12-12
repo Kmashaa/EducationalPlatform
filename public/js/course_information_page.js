@@ -73,9 +73,16 @@ let themes__list = {
     }
   }
 };
+let temp_c=localStorage.getItem('my_courses').split(",")[1];
 
 document.getElementById('course-data__header').textContent = course_name;
-
+if (!getCookie("uid") ||temp_c!=course_name) {
+  document.getElementById('button__lessons').style.display = "None";
+  document.getElementById('button__test').style.display = "None";
+}
+if (!getCookie("uid")||temp_c==course_name){
+  document.getElementById('button__pay').style.display = "None";
+}
 let theme = themes__list;
 // alert(theme.name);
 while (theme) {
@@ -103,16 +110,8 @@ document.getElementById('button__comments').textContent = "Comments";
 document.getElementById('button__lessons').textContent = "Lessons";
 document.getElementById('button__test').textContent = "Test";
 
-let temp_c=localStorage.getItem('my_courses').split(",")[1];
 
-if (!getCookie("uid") ||temp_c!=course_name) {
-    document.getElementById('button__lessons').style.display = "None";
-    document.getElementById('button__test').style.display = "None";
-}
-if (!getCookie("uid")||temp_c==course_name){
-  document.getElementById('button__pay').style.display = "None";
 
-}
 
 document.getElementById('button__back').textContent = "Back";
 
@@ -125,7 +124,6 @@ document.querySelector('.button_pay').onclick = function (e) {
   let temp = [];
   let temp_c_name = sessionStorage.getItem('courseName');
   let z = 0;
-  alert(temp_c_name);
 
   let is_existing = "False";
   while (z < temp_c.length) {
@@ -135,7 +133,6 @@ document.querySelector('.button_pay').onclick = function (e) {
     }
     z = z + 1;
   }
-  alert(temp_c_name);
   if (is_existing == "False") {
     temp[z] = temp_c_name;
 
