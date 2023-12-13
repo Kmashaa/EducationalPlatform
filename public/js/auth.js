@@ -240,7 +240,7 @@ export function authorize(email,password){
 
       document.cookie = "uid" + "=" + user.uid;
       document.cookie="username"+"="+email.split("@")[0];
-      window.location.href="home_page.html";
+      window.location.href="index.html";
     })
     .catch((error) => {
       window.alert("Wrong email or password. Please, try again. ");

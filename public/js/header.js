@@ -11,7 +11,7 @@ if(getCookie("uid")){
   let button__logout=document.createElement('a');
   button__logout.className="button_sign_up";
   button__logout.textContent="Log out";
-  button__logout.href="home_page.html";
+  button__logout.href="index.html";
   document.getElementById('buttons_sign').append(button__logout);
   // document.getElementById('buttons_sign').style.width="50%";
   // document.getElementById('buttons_profile').style.width="0px";
