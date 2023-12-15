@@ -1,4 +1,6 @@
-import {getCookie} from "./auth.js"
+import {db, getCookie} from "./auth.js"
+import { doc , getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
+
 let cells_list={
   "day": "Monday",
   "times":{
@@ -102,51 +104,39 @@ let cells_list={
   "next":null
 };
 
-let cell=cells_list;
-while(cell) {
-  let day = cell.day;
+
+const docRef2=doc(db, "cells", "zB1up6EBeuYlPQYXj31kKhlhQCx2");
+const docSnap = await getDoc(docRef2);
+let cells = docSnap.data();
+let counter=0;
+let days=["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+while(counter<days.length){
   let option=document.createElement('option');
-  option.value=day;
-  option.textContent=day;
-  option.text=day;
+  option.value=days[counter];
+  option.textContent=days[counter];
   document.getElementById('day_of_week').append(option);
-  cell=cell.next;
-
+  counter=counter+1;
 }
 
-let cell2=cells_list;
-while(cell2) {
-  let times = cell2.times;
-  while (times){
-    let time = times.time;
-    let option=document.createElement('option');
-    option.value=time;
-    option.textContent=time;
-    option.text=time;
-    document.getElementById('time').append(option);
-    times=times.next;
-  }
+counter=0;
+while(counter<24){
+  let option=document.createElement('option');
+  let temp_counter=counter+1;
+  option.value=counter;
+  option.textContent=counter+":00-"+temp_counter+":00";
 
-  cell2=cell2.next;
-
+  document.getElementById('time').append(option);
+  counter=counter+1;
 }
-
 
 const authForm = document.getElementById('authForm');
-authForm.addEventListener('submit',(e) => {
+authForm.addEventListener('submit',async (e) => {
   e.preventDefault();
   const day_of_week = document.getElementById('day_of_week').value;
   const time = document.getElementById('time').value;
-  // const password = document.getElementById('pass').value;
-  // let cell = localStorage.getItem('new_cell');
-  let temp=[];
-  let i=0;
+  cells[day_of_week][time]="False";
+  console.log(cells[day_of_week][time]);
+  await updateDoc(docRef2,cells);
 
-  // while(i<cells_list.length){
-  //   temp[i]=cells_list[i];
-  //   i=i+1;
-  // }
-  temp=cell;
-  localStorage.setItem('new_cell',temp);
   window.location.href="profile_page.html";
 });

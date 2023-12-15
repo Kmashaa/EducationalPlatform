@@ -1,6 +1,9 @@
-import {getCookie, database, dbRef} from "./auth.js"
+import {getCookie, database, dbRef, db} from "./auth.js"
+import { doc , getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
 
 import {child, get, ref, set} from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
+
+
 
 let themes__list = {
   name: "Math",
@@ -69,716 +72,730 @@ let themes__list = {
     }
   }
 };
+// let allData=[]
+// let cells_empty={
+//   "Monday":["False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False"],
+//   "Tuesday":["False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False"],
+//   "Wednesday":["False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False"],
+//   "Thursday":["False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False"],
+//   "Friday":["False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False"],
+//   "Saturday":["False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False"],
+//   "Sunday":["False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False"],
+// }
 
-let cells_list = {
-  "day": "Monday",
-  "times": {
-    "time": "00:00-01:00",
-    "used": "False",
-    "next": {
-      "time": "01:00-02:00",
-      "used": "False",
-      "next": {
-        "time": "02:00-03:00",
-        "used": "False",
-        "next": {
-          "time": "03:00-04:00",
-          "used": "True",
-          "next": {
-            "time": "04:00-05:00",
-            "used": "False",
-            "next": {
-              "time": "05:00-06:00",
-              "used": "False",
-              "next": {
-                "time": "06:00-07:00",
-                "used": "False",
-                "next": {
-                  "time": "07:00-08:00",
-                  "used": "True",
-                  "next": {
-                    "time": "08:00-09:00",
-                    "used": "False",
-                    "next": {
-                      "time": "09:00-10:00",
-                      "used": "False",
-                      "next": {
-                        "time": "10:00-11:00",
-                        "used": "False",
-                        "next": {
-                          "time": "11:00-12:00",
-                          "used": "False",
-                          "next": {
-                            "time": "12:00-13:00",
-                            "used": "False",
-                            "next": {
-                              "time": "13:00-14:00",
-                              "used": "False",
-                              "next": {
-                                "time": "14:00-15:00",
-                                "used": "False",
-                                "next": {
-                                  "time": "15:00-16:00",
-                                  "used": "False",
-                                  "next": {
-                                    "time": "16:00-17:00",
-                                    "used": "False",
-                                    "next": {
-                                      "time": "17:00-18:00",
-                                      "used": "False",
-                                      "next": {
-                                        "time": "18:00-19:00",
-                                        "used": "False",
-                                        "next": {
-                                          "time": "19:00-20:00",
-                                          "used": "False",
-                                          "next": {
-                                            "time": "20:00-21:00",
-                                            "used": "False",
-                                            "next": {
-                                              "time": "21:00-22:00",
-                                              "used": "False",
-                                              "next": {
-                                                "time": "22:00-23:00",
-                                                "used": "False",
-                                                "next": {
-                                                  "time": "23:00-24:00",
-                                                  "used": "False",
-                                                  "next": null
+// let cells_list = {
+//   "day": "Monday",
+//   "times": {
+//     "time": "00:00-01:00",
+//     "used": "False",
+//     "next": {
+//       "time": "01:00-02:00",
+//       "used": "False",
+//       "next": {
+//         "time": "02:00-03:00",
+//         "used": "False",
+//         "next": {
+//           "time": "03:00-04:00",
+//           "used": "False",
+//           "next": {
+//             "time": "04:00-05:00",
+//             "used": "False",
+//             "next": {
+//               "time": "05:00-06:00",
+//               "used": "False",
+//               "next": {
+//                 "time": "06:00-07:00",
+//                 "used": "False",
+//                 "next": {
+//                   "time": "07:00-08:00",
+//                   "used": "False",
+//                   "next": {
+//                     "time": "08:00-09:00",
+//                     "used": "False",
+//                     "next": {
+//                       "time": "09:00-10:00",
+//                       "used": "False",
+//                       "next": {
+//                         "time": "10:00-11:00",
+//                         "used": "False",
+//                         "next": {
+//                           "time": "11:00-12:00",
+//                           "used": "False",
+//                           "next": {
+//                             "time": "12:00-13:00",
+//                             "used": "False",
+//                             "next": {
+//                               "time": "13:00-14:00",
+//                               "used": "False",
+//                               "next": {
+//                                 "time": "14:00-15:00",
+//                                 "used": "False",
+//                                 "next": {
+//                                   "time": "15:00-16:00",
+//                                   "used": "False",
+//                                   "next": {
+//                                     "time": "16:00-17:00",
+//                                     "used": "False",
+//                                     "next": {
+//                                       "time": "17:00-18:00",
+//                                       "used": "False",
+//                                       "next": {
+//                                         "time": "18:00-19:00",
+//                                         "used": "False",
+//                                         "next": {
+//                                           "time": "19:00-20:00",
+//                                           "used": "False",
+//                                           "next": {
+//                                             "time": "20:00-21:00",
+//                                             "used": "False",
+//                                             "next": {
+//                                               "time": "21:00-22:00",
+//                                               "used": "False",
+//                                               "next": {
+//                                                 "time": "22:00-23:00",
+//                                                 "used": "False",
+//                                                 "next": {
+//                                                   "time": "23:00-24:00",
+//                                                   "used": "False",
+//                                                   "next": "null"
+//
+//                                                 }
+//                                               }
+//                                             }
+//                                           }
+//                                         }
+//                                       }
+//                                     }
+//                                   }
+//                                 }
+//                               }
+//                             }
+//                           }
+//                         }
+//                       }
+//                     }
+//                   }
+//                 }
+//               }
+//             }
+//           }
+//         }
+//       }
+//     }
+//   },
+//   "next": {
+//     "day": "Tuesday",
+//     "times": {
+//       "time": "00:00-01:00",
+//       "used": "False",
+//       "next": {
+//         "time": "01:00-02:00",
+//         "used": "False",
+//         "next": {
+//           "time": "02:00-03:00",
+//           "used": "False",
+//           "next": {
+//             "time": "03:00-04:00",
+//             "used": "False",
+//             "next": {
+//               "time": "04:00-05:00",
+//               "used": "False",
+//               "next": {
+//                 "time": "05:00-06:00",
+//                 "used": "False",
+//                 "next": {
+//                   "time": "06:00-07:00",
+//                   "used": "False",
+//                   "next": {
+//                     "time": "07:00-08:00",
+//                     "used": "False",
+//                     "next": {
+//                       "time": "08:00-09:00",
+//                       "used": "False",
+//                       "next": {
+//                         "time": "09:00-10:00",
+//                         "used": "False",
+//                         "next": {
+//                           "time": "10:00-11:00",
+//                           "used": "False",
+//                           "next": {
+//                             "time": "11:00-12:00",
+//                             "used": "False",
+//                             "next": {
+//                               "time": "12:00-13:00",
+//                               "used": "False",
+//                               "next": {
+//                                 "time": "13:00-14:00",
+//                                 "used": "False",
+//                                 "next": {
+//                                   "time": "14:00-15:00",
+//                                   "used": "False",
+//                                   "next": {
+//                                     "time": "15:00-16:00",
+//                                     "used": "False",
+//                                     "next": {
+//                                       "time": "16:00-17:00",
+//                                       "used": "False",
+//                                       "next": {
+//                                         "time": "17:00-18:00",
+//                                         "used": "False",
+//                                         "next": {
+//                                           "time": "18:00-19:00",
+//                                           "used": "False",
+//                                           "next": {
+//                                             "time": "19:00-20:00",
+//                                             "used": "False",
+//                                             "next": {
+//                                               "time": "20:00-21:00",
+//                                               "used": "False",
+//                                               "next": {
+//                                                 "time": "21:00-22:00",
+//                                                 "used": "False",
+//                                                 "next": {
+//                                                   "time": "22:00-23:00",
+//                                                   "used": "False",
+//                                                   "next": {
+//                                                     "time": "23:00-24:00",
+//                                                     "used": "False",
+//                                                     "next": "null"
+//
+//                                                   }
+//                                                 }
+//                                               }
+//                                             }
+//                                           }
+//                                         }
+//                                       }
+//                                     }
+//                                   }
+//                                 }
+//                               }
+//                             }
+//                           }
+//                         }
+//                       }
+//                     }
+//                   }
+//                 }
+//               }
+//             }
+//           }
+//         }
+//       }
+//     },
+//     "next": {
+//       "day": "Wednesday",
+//       "times": {
+//         "time": "00:00-01:00",
+//         "used": "False",
+//         "next": {
+//           "time": "01:00-02:00",
+//           "used": "False",
+//           "next": {
+//             "time": "02:00-03:00",
+//             "used": "False",
+//             "next": {
+//               "time": "03:00-04:00",
+//               "used": "False",
+//               "next": {
+//                 "time": "04:00-05:00",
+//                 "used": "False",
+//                 "next": {
+//                   "time": "05:00-06:00",
+//                   "used": "False",
+//                   "next": {
+//                     "time": "06:00-07:00",
+//                     "used": "False",
+//                     "next": {
+//                       "time": "07:00-08:00",
+//                       "used": "False",
+//                       "next": {
+//                         "time": "08:00-09:00",
+//                         "used": "False",
+//                         "next": {
+//                           "time": "09:00-10:00",
+//                           "used": "False",
+//                           "next": {
+//                             "time": "10:00-11:00",
+//                             "used": "False",
+//                             "next": {
+//                               "time": "11:00-12:00",
+//                               "used": "False",
+//                               "next": {
+//                                 "time": "12:00-13:00",
+//                                 "used": "False",
+//                                 "next": {
+//                                   "time": "13:00-14:00",
+//                                   "used": "False",
+//                                   "next": {
+//                                     "time": "14:00-15:00",
+//                                     "used": "False",
+//                                     "next": {
+//                                       "time": "15:00-16:00",
+//                                       "used": "False",
+//                                       "next": {
+//                                         "time": "16:00-17:00",
+//                                         "used": "False",
+//                                         "next": {
+//                                           "time": "17:00-18:00",
+//                                           "used": "False",
+//                                           "next": {
+//                                             "time": "18:00-19:00",
+//                                             "used": "False",
+//                                             "next": {
+//                                               "time": "19:00-20:00",
+//                                               "used": "False",
+//                                               "next": {
+//                                                 "time": "20:00-21:00",
+//                                                 "used": "False",
+//                                                 "next": {
+//                                                   "time": "21:00-22:00",
+//                                                   "used": "False",
+//                                                   "next": {
+//                                                     "time": "22:00-23:00",
+//                                                     "used": "False",
+//                                                     "next": {
+//                                                       "time": "23:00-24:00",
+//                                                       "used": "False",
+//                                                       "next": "null"
+//
+//                                                     }
+//                                                   }
+//                                                 }
+//                                               }
+//                                             }
+//                                           }
+//                                         }
+//                                       }
+//                                     }
+//                                   }
+//                                 }
+//                               }
+//                             }
+//                           }
+//                         }
+//                       }
+//                     }
+//                   }
+//                 }
+//               }
+//             }
+//           }
+//         }
+//       },
+//       "next": {
+//         "day": "Thursday",
+//         "times": {
+//           "time": "00:00-01:00",
+//           "used": "False",
+//           "next": {
+//             "time": "01:00-02:00",
+//             "used": "False",
+//             "next": {
+//               "time": "02:00-03:00",
+//               "used": "False",
+//               "next": {
+//                 "time": "03:00-04:00",
+//                 "used": "False",
+//                 "next": {
+//                   "time": "04:00-05:00",
+//                   "used": "False",
+//                   "next": {
+//                     "time": "05:00-06:00",
+//                     "used": "False",
+//                     "next": {
+//                       "time": "06:00-07:00",
+//                       "used": "False",
+//                       "next": {
+//                         "time": "07:00-08:00",
+//                         "used": "False",
+//                         "next": {
+//                           "time": "08:00-09:00",
+//                           "used": "False",
+//                           "next": {
+//                             "time": "09:00-10:00",
+//                             "used": "False",
+//                             "next": {
+//                               "time": "10:00-11:00",
+//                               "used": "False",
+//                               "next": {
+//                                 "time": "11:00-12:00",
+//                                 "used": "False",
+//                                 "next": {
+//                                   "time": "12:00-13:00",
+//                                   "used": "False",
+//                                   "next": {
+//                                     "time": "13:00-14:00",
+//                                     "used": "False",
+//                                     "next": {
+//                                       "time": "14:00-15:00",
+//                                       "used": "False",
+//                                       "next": {
+//                                         "time": "15:00-16:00",
+//                                         "used": "False",
+//                                         "next": {
+//                                           "time": "16:00-17:00",
+//                                           "used": "False",
+//                                           "next": {
+//                                             "time": "17:00-18:00",
+//                                             "used": "False",
+//                                             "next": {
+//                                               "time": "18:00-19:00",
+//                                               "used": "False",
+//                                               "next": {
+//                                                 "time": "19:00-20:00",
+//                                                 "used": "False",
+//                                                 "next": {
+//                                                   "time": "20:00-21:00",
+//                                                   "used": "False",
+//                                                   "next": {
+//                                                     "time": "21:00-22:00",
+//                                                     "used": "False",
+//                                                     "next": {
+//                                                       "time": "22:00-23:00",
+//                                                       "used": "False",
+//                                                       "next": {
+//                                                         "time": "23:00-24:00",
+//                                                         "used": "False",
+//                                                         "next": "null"
+//
+//                                                       }
+//                                                     }
+//                                                   }
+//                                                 }
+//                                               }
+//                                             }
+//                                           }
+//                                         }
+//                                       }
+//                                     }
+//                                   }
+//                                 }
+//                               }
+//                             }
+//                           }
+//                         }
+//                       }
+//                     }
+//                   }
+//                 }
+//               }
+//             }
+//           }
+//         },
+//         "next": {
+//           "day": "Friday",
+//           "times": {
+//             "time": "00:00-01:00",
+//             "used": "False",
+//             "next": {
+//               "time": "01:00-02:00",
+//               "used": "False",
+//               "next": {
+//                 "time": "02:00-03:00",
+//                 "used": "False",
+//                 "next": {
+//                   "time": "03:00-04:00",
+//                   "used": "False",
+//                   "next": {
+//                     "time": "04:00-05:00",
+//                     "used": "False",
+//                     "next": {
+//                       "time": "05:00-06:00",
+//                       "used": "False",
+//                       "next": {
+//                         "time": "06:00-07:00",
+//                         "used": "False",
+//                         "next": {
+//                           "time": "07:00-08:00",
+//                           "used": "False",
+//                           "next": {
+//                             "time": "08:00-09:00",
+//                             "used": "False",
+//                             "next": {
+//                               "time": "09:00-10:00",
+//                               "used": "False",
+//                               "next": {
+//                                 "time": "10:00-11:00",
+//                                 "used": "False",
+//                                 "next": {
+//                                   "time": "11:00-12:00",
+//                                   "used": "False",
+//                                   "next": {
+//                                     "time": "12:00-13:00",
+//                                     "used": "False",
+//                                     "next": {
+//                                       "time": "13:00-14:00",
+//                                       "used": "False",
+//                                       "next": {
+//                                         "time": "14:00-15:00",
+//                                         "used": "False",
+//                                         "next": {
+//                                           "time": "15:00-16:00",
+//                                           "used": "False",
+//                                           "next": {
+//                                             "time": "16:00-17:00",
+//                                             "used": "False",
+//                                             "next": {
+//                                               "time": "17:00-18:00",
+//                                               "used": "False",
+//                                               "next": {
+//                                                 "time": "18:00-19:00",
+//                                                 "used": "False",
+//                                                 "next": {
+//                                                   "time": "19:00-20:00",
+//                                                   "used": "False",
+//                                                   "next": {
+//                                                     "time": "20:00-21:00",
+//                                                     "used": "False",
+//                                                     "next": {
+//                                                       "time": "21:00-22:00",
+//                                                       "used": "False",
+//                                                       "next": {
+//                                                         "time": "22:00-23:00",
+//                                                         "used": "False",
+//                                                         "next": {
+//                                                           "time": "23:00-24:00",
+//                                                           "used": "False",
+//                                                           "next": "null"
+//
+//                                                         }
+//                                                       }
+//                                                     }
+//                                                   }
+//                                                 }
+//                                               }
+//                                             }
+//                                           }
+//                                         }
+//                                       }
+//                                     }
+//                                   }
+//                                 }
+//                               }
+//                             }
+//                           }
+//                         }
+//                       }
+//                     }
+//                   }
+//                 }
+//               }
+//             }
+//           },
+//           "next": {
+//             "day": "Saturday",
+//             "times": {
+//               "time": "00:00-01:00",
+//               "used": "False",
+//               "next": {
+//                 "time": "01:00-02:00",
+//                 "used": "False",
+//                 "next": {
+//                   "time": "02:00-03:00",
+//                   "used": "False",
+//                   "next": {
+//                     "time": "03:00-04:00",
+//                     "used": "False",
+//                     "next": {
+//                       "time": "04:00-05:00",
+//                       "used": "False",
+//                       "next": {
+//                         "time": "05:00-06:00",
+//                         "used": "False",
+//                         "next": {
+//                           "time": "06:00-07:00",
+//                           "used": "False",
+//                           "next": {
+//                             "time": "07:00-08:00",
+//                             "used": "False",
+//                             "next": {
+//                               "time": "08:00-09:00",
+//                               "used": "False",
+//                               "next": {
+//                                 "time": "09:00-10:00",
+//                                 "used": "False",
+//                                 "next": {
+//                                   "time": "10:00-11:00",
+//                                   "used": "False",
+//                                   "next": {
+//                                     "time": "11:00-12:00",
+//                                     "used": "False",
+//                                     "next": {
+//                                       "time": "12:00-13:00",
+//                                       "used": "False",
+//                                       "next": {
+//                                         "time": "13:00-14:00",
+//                                         "used": "False",
+//                                         "next": {
+//                                           "time": "14:00-15:00",
+//                                           "used": "False",
+//                                           "next": {
+//                                             "time": "15:00-16:00",
+//                                             "used": "False",
+//                                             "next": {
+//                                               "time": "16:00-17:00",
+//                                               "used": "False",
+//                                               "next": {
+//                                                 "time": "17:00-18:00",
+//                                                 "used": "False",
+//                                                 "next": {
+//                                                   "time": "18:00-19:00",
+//                                                   "used": "False",
+//                                                   "next": {
+//                                                     "time": "19:00-20:00",
+//                                                     "used": "False",
+//                                                     "next": {
+//                                                       "time": "20:00-21:00",
+//                                                       "used": "False",
+//                                                       "next": {
+//                                                         "time": "21:00-22:00",
+//                                                         "used": "False",
+//                                                         "next": {
+//                                                           "time": "22:00-23:00",
+//                                                           "used": "False",
+//                                                           "next": {
+//                                                             "time": "23:00-24:00",
+//                                                             "used": "False",
+//                                                             "next": "null"
+//
+//                                                           }
+//                                                         }
+//                                                       }
+//                                                     }
+//                                                   }
+//                                                 }
+//                                               }
+//                                             }
+//                                           }
+//                                         }
+//                                       }
+//                                     }
+//                                   }
+//                                 }
+//                               }
+//                             }
+//                           }
+//                         }
+//                       }
+//                     }
+//                   }
+//                 }
+//               }
+//             },
+//             "next": {
+//               "day": "Sunday",
+//               "times": {
+//                 "time": "00:00-01:00",
+//                 "used": "False",
+//                 "next": {
+//                   "time": "01:00-02:00",
+//                   "used": "False",
+//                   "next": {
+//                     "time": "02:00-03:00",
+//                     "used": "False",
+//                     "next": {
+//                       "time": "03:00-04:00",
+//                       "used": "False",
+//                       "next": {
+//                         "time": "04:00-05:00",
+//                         "used": "False",
+//                         "next": {
+//                           "time": "05:00-06:00",
+//                           "used": "False",
+//                           "next": {
+//                             "time": "06:00-07:00",
+//                             "used": "False",
+//                             "next": {
+//                               "time": "07:00-08:00",
+//                               "used": "False",
+//                               "next": {
+//                                 "time": "08:00-09:00",
+//                                 "used": "False",
+//                                 "next": {
+//                                   "time": "09:00-10:00",
+//                                   "used": "False",
+//                                   "next": {
+//                                     "time": "10:00-11:00",
+//                                     "used": "False",
+//                                     "next": {
+//                                       "time": "11:00-12:00",
+//                                       "used": "False",
+//                                       "next": {
+//                                         "time": "12:00-13:00",
+//                                         "used": "False",
+//                                         "next": {
+//                                           "time": "13:00-14:00",
+//                                           "used": "False",
+//                                           "next": {
+//                                             "time": "14:00-15:00",
+//                                             "used": "False",
+//                                             "next": {
+//                                               "time": "15:00-16:00",
+//                                               "used": "False",
+//                                               "next": {
+//                                                 "time": "16:00-17:00",
+//                                                 "used": "False",
+//                                                 "next": {
+//                                                   "time": "17:00-18:00",
+//                                                   "used": "False",
+//                                                   "next": {
+//                                                     "time": "18:00-19:00",
+//                                                     "used": "False",
+//                                                     "next": {
+//                                                       "time": "19:00-20:00",
+//                                                       "used": "False",
+//                                                       "next": {
+//                                                         "time": "20:00-21:00",
+//                                                         "used": "False",
+//                                                         "next": {
+//                                                           "time": "21:00-22:00",
+//                                                           "used": "False",
+//                                                           "next": {
+//                                                             "time": "22:00-23:00",
+//                                                             "used": "False",
+//                                                             "next": {
+//                                                               "time": "23:00-24:00",
+//                                                               "used": "False",
+//                                                               "next": "null"
+//
+//                                                             }
+//                                                           }
+//                                                         }
+//                                                       }
+//                                                     }
+//                                                   }
+//                                                 }
+//                                               }
+//                                             }
+//                                           }
+//                                         }
+//                                       }
+//                                     }
+//                                   }
+//                                 }
+//                               }
+//                             }
+//                           }
+//                         }
+//                       }
+//                     }
+//                   }
+//                 }
+//               },
+//               "next": "null"
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// };
+const docRef =  doc(db, "cells", "empty_cells_list");
 
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  "next": {
-    "day": "Tuesday",
-    "times": {
-      "time": "00:00-01:00",
-      "used": "True",
-      "next": {
-        "time": "01:00-02:00",
-        "used": "False",
-        "next": {
-          "time": "02:00-03:00",
-          "used": "False",
-          "next": {
-            "time": "03:00-04:00",
-            "used": "False",
-            "next": {
-              "time": "04:00-05:00",
-              "used": "False",
-              "next": {
-                "time": "05:00-06:00",
-                "used": "False",
-                "next": {
-                  "time": "06:00-07:00",
-                  "used": "False",
-                  "next": {
-                    "time": "07:00-08:00",
-                    "used": "False",
-                    "next": {
-                      "time": "08:00-09:00",
-                      "used": "False",
-                      "next": {
-                        "time": "09:00-10:00",
-                        "used": "False",
-                        "next": {
-                          "time": "10:00-11:00",
-                          "used": "False",
-                          "next": {
-                            "time": "11:00-12:00",
-                            "used": "False",
-                            "next": {
-                              "time": "12:00-13:00",
-                              "used": "False",
-                              "next": {
-                                "time": "13:00-14:00",
-                                "used": "False",
-                                "next": {
-                                  "time": "14:00-15:00",
-                                  "used": "False",
-                                  "next": {
-                                    "time": "15:00-16:00",
-                                    "used": "False",
-                                    "next": {
-                                      "time": "16:00-17:00",
-                                      "used": "False",
-                                      "next": {
-                                        "time": "17:00-18:00",
-                                        "used": "False",
-                                        "next": {
-                                          "time": "18:00-19:00",
-                                          "used": "False",
-                                          "next": {
-                                            "time": "19:00-20:00",
-                                            "used": "False",
-                                            "next": {
-                                              "time": "20:00-21:00",
-                                              "used": "False",
-                                              "next": {
-                                                "time": "21:00-22:00",
-                                                "used": "False",
-                                                "next": {
-                                                  "time": "22:00-23:00",
-                                                  "used": "False",
-                                                  "next": {
-                                                    "time": "23:00-24:00",
-                                                    "used": "False",
-                                                    "next": null
+// await updateDoc(docRef,cells_empty);
 
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "next": {
-      "day": "Wednesday",
-      "times": {
-        "time": "00:00-01:00",
-        "used": "False",
-        "next": {
-          "time": "01:00-02:00",
-          "used": "False",
-          "next": {
-            "time": "02:00-03:00",
-            "used": "False",
-            "next": {
-              "time": "03:00-04:00",
-              "used": "False",
-              "next": {
-                "time": "04:00-05:00",
-                "used": "False",
-                "next": {
-                  "time": "05:00-06:00",
-                  "used": "False",
-                  "next": {
-                    "time": "06:00-07:00",
-                    "used": "False",
-                    "next": {
-                      "time": "07:00-08:00",
-                      "used": "False",
-                      "next": {
-                        "time": "08:00-09:00",
-                        "used": "False",
-                        "next": {
-                          "time": "09:00-10:00",
-                          "used": "False",
-                          "next": {
-                            "time": "10:00-11:00",
-                            "used": "False",
-                            "next": {
-                              "time": "11:00-12:00",
-                              "used": "False",
-                              "next": {
-                                "time": "12:00-13:00",
-                                "used": "False",
-                                "next": {
-                                  "time": "13:00-14:00",
-                                  "used": "False",
-                                  "next": {
-                                    "time": "14:00-15:00",
-                                    "used": "False",
-                                    "next": {
-                                      "time": "15:00-16:00",
-                                      "used": "False",
-                                      "next": {
-                                        "time": "16:00-17:00",
-                                        "used": "False",
-                                        "next": {
-                                          "time": "17:00-18:00",
-                                          "used": "False",
-                                          "next": {
-                                            "time": "18:00-19:00",
-                                            "used": "False",
-                                            "next": {
-                                              "time": "19:00-20:00",
-                                              "used": "False",
-                                              "next": {
-                                                "time": "20:00-21:00",
-                                                "used": "False",
-                                                "next": {
-                                                  "time": "21:00-22:00",
-                                                  "used": "False",
-                                                  "next": {
-                                                    "time": "22:00-23:00",
-                                                    "used": "False",
-                                                    "next": {
-                                                      "time": "23:00-24:00",
-                                                      "used": "False",
-                                                      "next": null
-
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "next": {
-        "day": "Thursday",
-        "times": {
-          "time": "00:00-01:00",
-          "used": "False",
-          "next": {
-            "time": "01:00-02:00",
-            "used": "True",
-            "next": {
-              "time": "02:00-03:00",
-              "used": "False",
-              "next": {
-                "time": "03:00-04:00",
-                "used": "False",
-                "next": {
-                  "time": "04:00-05:00",
-                  "used": "False",
-                  "next": {
-                    "time": "05:00-06:00",
-                    "used": "False",
-                    "next": {
-                      "time": "06:00-07:00",
-                      "used": "False",
-                      "next": {
-                        "time": "07:00-08:00",
-                        "used": "False",
-                        "next": {
-                          "time": "08:00-09:00",
-                          "used": "False",
-                          "next": {
-                            "time": "09:00-10:00",
-                            "used": "False",
-                            "next": {
-                              "time": "10:00-11:00",
-                              "used": "False",
-                              "next": {
-                                "time": "11:00-12:00",
-                                "used": "False",
-                                "next": {
-                                  "time": "12:00-13:00",
-                                  "used": "False",
-                                  "next": {
-                                    "time": "13:00-14:00",
-                                    "used": "False",
-                                    "next": {
-                                      "time": "14:00-15:00",
-                                      "used": "False",
-                                      "next": {
-                                        "time": "15:00-16:00",
-                                        "used": "False",
-                                        "next": {
-                                          "time": "16:00-17:00",
-                                          "used": "False",
-                                          "next": {
-                                            "time": "17:00-18:00",
-                                            "used": "False",
-                                            "next": {
-                                              "time": "18:00-19:00",
-                                              "used": "False",
-                                              "next": {
-                                                "time": "19:00-20:00",
-                                                "used": "False",
-                                                "next": {
-                                                  "time": "20:00-21:00",
-                                                  "used": "False",
-                                                  "next": {
-                                                    "time": "21:00-22:00",
-                                                    "used": "False",
-                                                    "next": {
-                                                      "time": "22:00-23:00",
-                                                      "used": "False",
-                                                      "next": {
-                                                        "time": "23:00-24:00",
-                                                        "used": "False",
-                                                        "next": null
-
-                                                      }
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "next": {
-          "day": "Friday",
-          "times": {
-            "time": "00:00-01:00",
-            "used": "False",
-            "next": {
-              "time": "01:00-02:00",
-              "used": "False",
-              "next": {
-                "time": "02:00-03:00",
-                "used": "False",
-                "next": {
-                  "time": "03:00-04:00",
-                  "used": "False",
-                  "next": {
-                    "time": "04:00-05:00",
-                    "used": "False",
-                    "next": {
-                      "time": "05:00-06:00",
-                      "used": "True",
-                      "next": {
-                        "time": "06:00-07:00",
-                        "used": "False",
-                        "next": {
-                          "time": "07:00-08:00",
-                          "used": "False",
-                          "next": {
-                            "time": "08:00-09:00",
-                            "used": "False",
-                            "next": {
-                              "time": "09:00-10:00",
-                              "used": "False",
-                              "next": {
-                                "time": "10:00-11:00",
-                                "used": "False",
-                                "next": {
-                                  "time": "11:00-12:00",
-                                  "used": "False",
-                                  "next": {
-                                    "time": "12:00-13:00",
-                                    "used": "False",
-                                    "next": {
-                                      "time": "13:00-14:00",
-                                      "used": "False",
-                                      "next": {
-                                        "time": "14:00-15:00",
-                                        "used": "False",
-                                        "next": {
-                                          "time": "15:00-16:00",
-                                          "used": "False",
-                                          "next": {
-                                            "time": "16:00-17:00",
-                                            "used": "False",
-                                            "next": {
-                                              "time": "17:00-18:00",
-                                              "used": "False",
-                                              "next": {
-                                                "time": "18:00-19:00",
-                                                "used": "False",
-                                                "next": {
-                                                  "time": "19:00-20:00",
-                                                  "used": "False",
-                                                  "next": {
-                                                    "time": "20:00-21:00",
-                                                    "used": "False",
-                                                    "next": {
-                                                      "time": "21:00-22:00",
-                                                      "used": "False",
-                                                      "next": {
-                                                        "time": "22:00-23:00",
-                                                        "used": "False",
-                                                        "next": {
-                                                          "time": "23:00-24:00",
-                                                          "used": "False",
-                                                          "next": null
-
-                                                        }
-                                                      }
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "next": {
-            "day": "Saturday",
-            "times": {
-              "time": "00:00-01:00",
-              "used": "False",
-              "next": {
-                "time": "01:00-02:00",
-                "used": "False",
-                "next": {
-                  "time": "02:00-03:00",
-                  "used": "False",
-                  "next": {
-                    "time": "03:00-04:00",
-                    "used": "False",
-                    "next": {
-                      "time": "04:00-05:00",
-                      "used": "False",
-                      "next": {
-                        "time": "05:00-06:00",
-                        "used": "False",
-                        "next": {
-                          "time": "06:00-07:00",
-                          "used": "False",
-                          "next": {
-                            "time": "07:00-08:00",
-                            "used": "False",
-                            "next": {
-                              "time": "08:00-09:00",
-                              "used": "False",
-                              "next": {
-                                "time": "09:00-10:00",
-                                "used": "False",
-                                "next": {
-                                  "time": "10:00-11:00",
-                                  "used": "False",
-                                  "next": {
-                                    "time": "11:00-12:00",
-                                    "used": "False",
-                                    "next": {
-                                      "time": "12:00-13:00",
-                                      "used": "False",
-                                      "next": {
-                                        "time": "13:00-14:00",
-                                        "used": "False",
-                                        "next": {
-                                          "time": "14:00-15:00",
-                                          "used": "False",
-                                          "next": {
-                                            "time": "15:00-16:00",
-                                            "used": "False",
-                                            "next": {
-                                              "time": "16:00-17:00",
-                                              "used": "False",
-                                              "next": {
-                                                "time": "17:00-18:00",
-                                                "used": "False",
-                                                "next": {
-                                                  "time": "18:00-19:00",
-                                                  "used": "False",
-                                                  "next": {
-                                                    "time": "19:00-20:00",
-                                                    "used": "False",
-                                                    "next": {
-                                                      "time": "20:00-21:00",
-                                                      "used": "False",
-                                                      "next": {
-                                                        "time": "21:00-22:00",
-                                                        "used": "False",
-                                                        "next": {
-                                                          "time": "22:00-23:00",
-                                                          "used": "False",
-                                                          "next": {
-                                                            "time": "23:00-24:00",
-                                                            "used": "False",
-                                                            "next": null
-
-                                                          }
-                                                        }
-                                                      }
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "next": {
-              "day": "Sunday",
-              "times": {
-                "time": "00:00-01:00",
-                "used": "False",
-                "next": {
-                  "time": "01:00-02:00",
-                  "used": "False",
-                  "next": {
-                    "time": "02:00-03:00",
-                    "used": "False",
-                    "next": {
-                      "time": "03:00-04:00",
-                      "used": "False",
-                      "next": {
-                        "time": "04:00-05:00",
-                        "used": "False",
-                        "next": {
-                          "time": "05:00-06:00",
-                          "used": "False",
-                          "next": {
-                            "time": "06:00-07:00",
-                            "used": "False",
-                            "next": {
-                              "time": "07:00-08:00",
-                              "used": "False",
-                              "next": {
-                                "time": "08:00-09:00",
-                                "used": "False",
-                                "next": {
-                                  "time": "09:00-10:00",
-                                  "used": "False",
-                                  "next": {
-                                    "time": "10:00-11:00",
-                                    "used": "False",
-                                    "next": {
-                                      "time": "11:00-12:00",
-                                      "used": "False",
-                                      "next": {
-                                        "time": "12:00-13:00",
-                                        "used": "False",
-                                        "next": {
-                                          "time": "13:00-14:00",
-                                          "used": "False",
-                                          "next": {
-                                            "time": "14:00-15:00",
-                                            "used": "False",
-                                            "next": {
-                                              "time": "15:00-16:00",
-                                              "used": "False",
-                                              "next": {
-                                                "time": "16:00-17:00",
-                                                "used": "False",
-                                                "next": {
-                                                  "time": "17:00-18:00",
-                                                  "used": "False",
-                                                  "next": {
-                                                    "time": "18:00-19:00",
-                                                    "used": "False",
-                                                    "next": {
-                                                      "time": "19:00-20:00",
-                                                      "used": "False",
-                                                      "next": {
-                                                        "time": "20:00-21:00",
-                                                        "used": "False",
-                                                        "next": {
-                                                          "time": "21:00-22:00",
-                                                          "used": "False",
-                                                          "next": {
-                                                            "time": "22:00-23:00",
-                                                            "used": "False",
-                                                            "next": {
-                                                              "time": "23:00-24:00",
-                                                              "used": "False",
-                                                              "next": null
-
-                                                            }
-                                                          }
-                                                        }
-                                                      }
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              },
-              next: null
-            }
-          }
-        }
-      }
-    }
-  }
-};
-
+let days=["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
 let cell = cells_list;
 while (cell) {
   let day = cell.day;

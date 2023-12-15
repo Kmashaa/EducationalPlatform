@@ -81,23 +81,28 @@ let temp_c=localStorage.getItem('my_courses').split(",")[1];
 
 document.getElementById('course-data__header').textContent = course_name;
 
-const docRef =  doc(db, "bought_courses", getCookie("uid"));
-const docSnap = await getDoc(docRef);
 
-let data = docSnap.data();
-let cond=checkAvailability(data["course_names"],course_name);
+// const docRef =  doc(db, "bought_courses", getCookie("uid"));
+// const docSnap = await getDoc(docRef);
+// let data = docSnap.data();
+// let cond=checkAvailability(data["course_names"],course_name);
 if(!getCookie("uid")){
   document.getElementById('button__test').style.display = "None";
   document.getElementById('button__pay').style.display = "None";
   document.getElementById('button__lessons').style.display = "None";
 }
-else if (!cond){
-  document.getElementById('button__lessons').style.display = "None";
-  document.getElementById('button__test').style.display = "None";
-
-}
-else if (cond){
-  document.getElementById('button__pay').style.display = "None";
+else {
+  const docRef =  doc(db, "bought_courses", getCookie("uid"));
+  const docSnap = await getDoc(docRef);
+  let data = docSnap.data();
+  let cond=checkAvailability(data["course_names"],course_name);
+  if (!cond) {
+    document.getElementById('button__lessons').style.display = "None";
+    document.getElementById('button__test').style.display = "None";
+  }
+  else if (cond){
+    document.getElementById('button__pay').style.display = "None";
+  }
 }
 // if (!getCookie("uid")||temp_c==course_name){
 //   document.getElementById('button__pay').style.display = "None";
