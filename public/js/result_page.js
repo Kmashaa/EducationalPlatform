@@ -10,7 +10,7 @@ let res_text = document.createElement('span');
 res_text.className = "result__text";
 if (result === "true") {
   document.getElementById("result-data__header").textContent = "Good result!";
-  res_text.textContent = "You have completed course " + course_name;
+  res_text.textContent = "You have completed test of course: " + course_name;
   let temp_c = localStorage.getItem('my_courses').split(",");
   let temp = [];
   let temp_c_name = sessionStorage.getItem('courseName');

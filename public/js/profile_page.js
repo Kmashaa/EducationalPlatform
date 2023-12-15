@@ -800,22 +800,36 @@ while (counter<days.length) {
   th.className = "day_of_week";
   document.getElementById('days_list').append(th);
   counter=counter+1;
-  // let day = cell.day;
-  // let th = document.createElement('th');
-  // th.value = day;
-  // th.textContent = day;
-  // th.text = day;
-  // th.className = "day_of_week";
-  // document.getElementById('days_list').append(th);
-  // cell = cell.next;
+
 
 }
-counter=0;
-let arr=[0,2,4];
-let arr_counter=0;
-let cell2=cells;
+
 let counter_days=0;
 let counter_times=0;
+let counter_cells=0;
+while (counter_times<24){
+  counter_days=0;
+  while(counter_days<days.length){
+    if (cells[days[counter_days]][counter_times]=="True"){
+      counter_cells=counter_cells+1;
+    }
+    counter_days=counter_days+1;
+  }
+  counter_times=counter_times+1;
+
+}
+let difficulty=4;
+let num_of_lessons_per_week=6-difficulty;
+let counter_of_num=0;
+let interval=parseInt(counter_cells/num_of_lessons_per_week);
+let counter_of_used_cells=0;
+// alert(counter_cells);
+counter=0;
+// let arr=[0,2,4];
+// let arr_counter=0;
+// let cell2=cells;
+counter_days=0;
+counter_times=0;
 while (counter_times<24){
   counter_days=0;
   while(counter_days<days.length){
@@ -824,14 +838,23 @@ while (counter_times<24){
     let td=document.createElement('td');
     td.value=cells[days[counter_days]][counter_times];
     if (td.value=="True"){
-      if (counter==arr[arr_counter]) {
-        if (arr_counter <= arr[arr.length - 2]) {
+      if (counter==counter_of_used_cells) {
+        if(counter_of_num<num_of_lessons_per_week){
+        // if (arr_counter <= arr[arr.length - 2]) {
           let a = document.createElement('a');
           a.textContent = "Foundations of math";
           a.href = "course_information_page.html";
           a.className="course_link";
           td.append(a);
-          arr_counter=arr_counter+1;
+          // alert(counter_of_used_cells);
+          counter_of_used_cells=counter_of_used_cells+interval;
+          counter_of_num=counter_of_num+1;
+          // arr_counter=arr_counter+1;
+
+      }
+        else{
+          td.textContent="ячейка";
+
         }
       }
       else{
