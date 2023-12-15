@@ -114,7 +114,7 @@ let themes__list = {
 
 
   let colors_courses=["rgba(0, 102, 255, 0.5)","rgba(0, 255, 209, 0.5)","rgba(255, 199, 0, 0.5)","rgba(255, 0, 0, 0.5)"];
-  document.getElementById("courses-data__header").textContent="Top rated";
+  document.getElementById("courses-data__header").textContent="Most popular";
   let counter_color=0;
   let tmpp=themes__list;
   while (tmpp){
@@ -138,19 +138,19 @@ let themes__list = {
       div2.className="item__course-description";
       li.append(div2);
 
-      let img=document.createElement('img');
-      img.src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Five-pointed_star.svg/1088px-Five-pointed_star.svg.png";
-      img.className="item__image";
+      // let img=document.createElement('img');
+      // img.src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Five-pointed_star.svg/1088px-Five-pointed_star.svg.png";
+      // img.className="item__image";
+      //
+      // let div3=document.createElement('div');
+      // div3.textContent=parseFloat(course.num);
+      // div3.className="item__mark";
 
-      let div3=document.createElement('div');
-      div3.textContent=parseFloat(course.num);
-      div3.className="item__mark";
-
-      let div4=document.createElement('div');
-      div4.className="item__rating";
-      div4.append(img);
-      div4.append(div3);
-      li.append(div4);
+      // let div4=document.createElement('div');
+      // div4.className="item__rating";
+      // div4.append(img);
+      // div4.append(div3);
+      // li.append(div4);
 
       let color=colors_courses[counter_color];
       li.style.background=color;

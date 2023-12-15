@@ -90,21 +90,21 @@ while(theme){
       div.textContent=course.descr;
       li.append(div);
 
-      let div1=document.createElement('div');
-      div1.className="item__rating";
+      // let div1=document.createElement('div');
+      // div1.className="item__rating";
+      //
+      // let img=document.createElement('img');
+      // img.src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Five-pointed_star.svg/1088px-Five-pointed_star.svg.png";
+      // img.className="item__image";
+      // div1.append(img);
 
-      let img=document.createElement('img');
-      img.src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Five-pointed_star.svg/1088px-Five-pointed_star.svg.png";
-      img.className="item__image";
-      div1.append(img);
 
+      // let div2=document.createElement('div');
+      // div2.className="item__mark";
+      // div2.textContent=parseFloat(course.num);
 
-      let div2=document.createElement('div');
-      div2.className="item__mark";
-      div2.textContent=parseFloat(course.num);
-
-      div1.append(div2);
-      li.append(div1);
+      // div1.append(div2);
+      // li.append(div1);
 
       let col=colors_courses[count];
       li.style.background=col;
@@ -123,7 +123,7 @@ while(theme){
 
 document.getElementById('header__name').textContent="Course name";
 document.getElementById('header__description').textContent="Description";
-document.getElementById('header__rating-title').textContent="Rating";
+// document.getElementById('header__rating-title').textContent="Rating";
 document.getElementById('course-data__header').textContent=theme_name;
 
 document.querySelector('.courses-list').onclick = function(e) {

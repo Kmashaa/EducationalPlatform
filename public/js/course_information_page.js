@@ -130,7 +130,7 @@ while (theme) {
 }
 
 
-document.getElementById('button__comments').textContent = "Comments";
+//document.getElementById('button__comments').textContent = "Comments";
 document.getElementById('button__lessons').textContent = "Lessons";
 document.getElementById('button__test').textContent = "Test";
 
