@@ -9,10 +9,10 @@ var allData = [];
 var themes__list;
 let data;
 const docRef = doc(db, 'themes',
-  'uGIp7HjXXSL0VKJEIamT');
+  'Gw3BaLwGeAAo5An8CtsM');
   const docSnap = await getDoc(docRef);
   data = docSnap.data();
-  // allData.push(data);
+  allData.push(data);
 
 // Convert the array to JSON
 themes__list = data;

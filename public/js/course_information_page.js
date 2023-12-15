@@ -1,7 +1,11 @@
-import {getCookie} from "./auth.js"
-
+import {db, getCookie} from "./auth.js"
+import { doc , getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
 let course_name = sessionStorage.getItem('courseName');
-
+function checkAvailability(arr, val) {
+  return arr.some(function (arrVal) {
+    return val === arrVal;
+  });
+}
 let themes__list = {
   name: "Math",
   courses: {
@@ -76,13 +80,28 @@ let themes__list = {
 let temp_c=localStorage.getItem('my_courses').split(",")[1];
 
 document.getElementById('course-data__header').textContent = course_name;
-if (!getCookie("uid") ||temp_c!=course_name) {
+
+const docRef =  doc(db, "bought_courses", getCookie("uid"));
+const docSnap = await getDoc(docRef);
+
+let data = docSnap.data();
+let cond=checkAvailability(data["course_names"],course_name);
+if(!getCookie("uid")){
+  document.getElementById('button__test').style.display = "None";
+  document.getElementById('button__pay').style.display = "None";
+  document.getElementById('button__lessons').style.display = "None";
+}
+else if (!cond){
   document.getElementById('button__lessons').style.display = "None";
   document.getElementById('button__test').style.display = "None";
+
 }
-if (!getCookie("uid")||temp_c==course_name){
+else if (cond){
   document.getElementById('button__pay').style.display = "None";
 }
+// if (!getCookie("uid")||temp_c==course_name){
+//   document.getElementById('button__pay').style.display = "None";
+// }
 let theme = themes__list;
 // alert(theme.name);
 while (theme) {
@@ -118,26 +137,26 @@ document.getElementById('button__back').textContent = "Back";
 document.querySelector('.buttons__list').onclick = function (e) {
   sessionStorage.setItem('buttonName', e.target.textContent); // Сохранить значение в sessionStorage
 };
-document.querySelector('.button_pay').onclick = function (e) {
-  let temp_c=localStorage.getItem('my_courses').split(",");
-
-  let temp = [];
-  let temp_c_name = sessionStorage.getItem('courseName');
-  let z = 0;
-
-  let is_existing = "False";
-  while (z < temp_c.length) {
-    temp[z] = temp_c[z];
-    if (temp[z] == temp_c_name) {
-      is_existing = "True";
-    }
-    z = z + 1;
-  }
-  if (is_existing == "False") {
-    temp[z] = temp_c_name;
-
-  }
-  localStorage.setItem('my_courses', temp);
-
-  sessionStorage.setItem('buttonName', e.target.textContent); // Сохранить значение в sessionStorage
-};
+// document.querySelector('.button_pay').onclick = function (e) {
+//   let temp_c=localStorage.getItem('my_courses').split(",");
+//
+//   let temp = [];
+//   let temp_c_name = sessionStorage.getItem('courseName');
+//   let z = 0;
+//
+//   let is_existing = "False";
+//   while (z < temp_c.length) {
+//     temp[z] = temp_c[z];
+//     if (temp[z] == temp_c_name) {
+//       is_existing = "True";
+//     }
+//     z = z + 1;
+//   }
+//   if (is_existing == "False") {
+//     temp[z] = temp_c_name;
+//
+//   }
+//   localStorage.setItem('my_courses', temp);
+//
+//   sessionStorage.setItem('buttonName', e.target.textContent); // Сохранить значение в sessionStorage
+// };

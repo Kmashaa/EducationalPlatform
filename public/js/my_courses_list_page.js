@@ -1,3 +1,7 @@
+import {db} from "./auth.js";
+import {getCookie} from './auth.js';
+import { doc , getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
+
 let colors_courses=["#FFB1B1","#FFE5B1","#BAFFE6","#AFF5FF"];
 let themes__list = {
   name: "Math",
@@ -136,8 +140,12 @@ let theme=themes__list;
 //   }
 //   counter_course=counter_course+1;
 // }
+const docRef =  doc(db, "bought_courses", getCookie("uid"));
+const docSnap = await getDoc(docRef);
 
-let temp_c = localStorage.getItem('my_courses').split(",");
+let data = docSnap.data();
+let temp_c=data["course_names"];
+// let temp_c = localStorage.getItem('my_courses').split(",");
 // let temp_c = localStorage.getItem('my_courses');
 
 let temp = [];
@@ -236,7 +244,7 @@ while (counter_course <= temp.length) {
         document.getElementById('courses-list').append(li);
 
         // document.getElementById('courses-list').append(li);
-        course = course.next;
+        //course = course.next;
       }
       course = course.next;
     }
