@@ -2,6 +2,7 @@ import {initializeApp} from "https://www.gstatic.com/firebasejs/9.21.0/firebase-
 import {getDatabase,ref,child, get,set } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
 import {getAuth,signInWithEmailAndPassword,createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js';
 import {addDoc,getFirestore,collection} from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
+import { doc , getDoc, updateDoc,setDoc } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDbsgrzEfiYQnhMXC0YoF5uCZdaI3oHWt8",
@@ -249,12 +250,15 @@ export function authorize(email,password){
     });
 }
 
-export function register(email,password){
+export function register(email,password,name){
   createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
+    .then(async (userCredential) => {
       const user = userCredential.user;
       document.cookie = "uid" + "=" + user.uid;
       document.cookie="username"+"="+email.split("@")[0];
+      await setDoc(doc(db, "users", user.uid), {
+        name: name
+      });
       window.location.href="profile_page.html";
     })
     .catch((error) => {

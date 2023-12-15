@@ -41,11 +41,26 @@
           name="email"
           type="email"
           required/><br>
+        <label for="users_name">Name</label><br>
+        <input
+          class="form__input-field"
+          id="users_name"
+          name="users_name"
+          type="text"
+          required/><br>
         <label for="pass">Password</label><br>
         <input
           class="form__input-field"
           id="pass"
-          name="password"
+          name="pass"
+          type="password"
+          minlength="8"
+          required/><br>
+        <label for="pass2">Confirm password</label><br>
+        <input
+          class="form__input-field"
+          id="pass2"
+          name="password2"
           type="password"
           minlength="8"
           required/><br>
@@ -56,7 +71,10 @@
     </main>
   </section>
 </main>
+
 <script type="module" src="js/header.js"></script>
 <script type="module" src="js/sign_up_page.js"></script>
+
+
 </body>
 </html>

@@ -2,7 +2,7 @@ import {getCookie} from "./auth.js"
 import {db} from "./auth.js";
 import { doc , getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
 import {addDoc,getFirestore,collection} from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
-alert(getCookie("uid"));
+// alert(getCookie("uid"));
 // let cells_empty={
 //   "Monday":["False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False"],
 //   "Tuesday":["False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False","False"],
