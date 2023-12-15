@@ -73,7 +73,13 @@ let themes__list = {
   }
 };
 
+const docRef2 =  doc(db, "users", getCookie("uid"));
+const nameSnap = await getDoc(docRef2);
+let name = nameSnap.data();
 
+document.getElementById('auth-data__header').textContent = name["name"];
+
+// document.getElementById('auth-data__header').textContent = getCookie("username");
 
 const docRef =  doc(db, "cells", getCookie("uid"));
 const docSnap = await getDoc(docRef);
@@ -225,7 +231,6 @@ while (counter_times<24){
 //
 // }
 
-document.getElementById('auth-data__header').textContent = getCookie("username");
 let colors_courses = ["#FFB1B1", "#FFE5B1", "#BAFFE6", "#AFF5FF"];
 
 let counter_color = 0;
