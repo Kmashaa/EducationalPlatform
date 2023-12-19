@@ -1,186 +1,251 @@
 import {getCookie, database, dbRef, db} from "./auth.js";
-import { doc , getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
+import { doc , getDoc, updateDoc,setDoc } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
 
 import {child, get, ref, set} from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
 
 
+// alert(getCookie("uid"));
+const roleRef=await getDoc(doc(db,"users",getCookie("uid")));
+const roleSnap=roleRef.data()
+const users_role=roleSnap["role"];
+//if (users_role!="moderator") {
+  document.getElementById('schedule__header').textContent = "Schedule";
+  let div_button1 = document.createElement('div');
+  div_button1.className="log_out";
 
-let themes__list = {
-  name: "Math",
-  courses: {
-    name: "Foundations of math",
-    descr: "First step",
-    times_a_week:3,
-    num: 4.9,
-    href: "course_information_page.html",
-    next: {
-      name: "Multiplication table",
-      descr: "A new level of learning mathematics",
-      num: 4.8,
+  let a_courses=document.createElement('a');
+  a_courses.href="my_courses_list_page.html";
+  a_courses.textContent="My courses";
+  a_courses.className="button__courses";
+  document.getElementById("buttons").append(a_courses);
+
+  let a_button1=document.createElement('a');
+  a_button1.href="add_cell_page.html";
+  a_button1.textContent="Add cell";
+  a_button1.className="button__cell";
+  div_button1.append(a_button1);
+
+  let a_button2=document.createElement('a');
+  a_button2.href="delete_cell_page.html";
+  a_button2.textContent="Delete cell";
+  a_button2.className="button__cell";
+  div_button1.append(a_button2);
+
+
+
+  document.getElementById('buttons').append(div_button1);
+
+
+  let counter_first=0;
+  while(counter_first<24){
+    let temp_counter=counter_first+1;
+    let tr=document.createElement('tr');
+    tr.id=counter_first+":00-"+temp_counter+":00";
+    let th=document.createElement('th');
+    th.textContent=counter_first+":00-"+temp_counter+":00";
+    th.className="time";
+    tr.append(th);
+    document.getElementById('schedule-table').append(tr);
+    counter_first=counter_first+1;
+
+    // let option=document.createElement('option');
+    // let temp_counter=counter+1;
+    // option.value=counter;
+    // option.textContent=counter+":00-"+temp_counter+":00";
+    // document.getElementById('time').append(option);
+    // counter=counter+1;
+  }
+
+
+
+
+
+
+
+
+
+  let themes__list = {
+    name: "Math",
+    courses: {
+      name: "Foundations of math",
+      descr: "First step",
+      times_a_week: 3,
+      num: 4.9,
       href: "course_information_page.html",
-      next: null
-    }
-  },
-  href: "courses_list_page.html",
-  next: {
-    name: "English",
+      next: {
+        name: "Multiplication table",
+        descr: "A new level of learning mathematics",
+        num: 4.8,
+        href: "course_information_page.html",
+        next: null
+      }
+    },
     href: "courses_list_page.html",
-    courses: null,
     next: {
-      name: "History",
+      name: "English",
       href: "courses_list_page.html",
       courses: null,
       next: {
-        name: "Biology",
-        courses: {
-          name: "Learning biology",
-          descr: "Cell - the basis of the structure",
-          num: 4.7,
-          href: "course_information_page.html",
-          next: {
-            name: "Basic biology",
-            descr: "Phytology",
-            num: 4.6,
+        name: "History",
+        href: "courses_list_page.html",
+        courses: null,
+        next: {
+          name: "Biology",
+          courses: {
+            name: "Learning biology",
+            descr: "Cell - the basis of the structure",
+            num: 4.7,
             href: "course_information_page.html",
             next: {
-              name: "One more",
-              descr: "Cell - the basis of the structure",
-              num: 4.5,
+              name: "Basic biology",
+              descr: "Phytology",
+              num: 4.6,
               href: "course_information_page.html",
-              next: null
+              next: {
+                name: "One more",
+                descr: "Cell - the basis of the structure",
+                num: 4.5,
+                href: "course_information_page.html",
+                next: null
+              }
             }
-          }
-        },
-        href: "courses_list_page.html",
-        next: {
-          name: "One more",
+          },
           href: "courses_list_page.html",
-          courses: null,
           next: {
             name: "One more",
             href: "courses_list_page.html",
             courses: null,
             next: {
-              name: "Math",
+              name: "One more",
               href: "courses_list_page.html",
               courses: null,
-              next: null
+              next: {
+                name: "Math",
+                href: "courses_list_page.html",
+                courses: null,
+                next: null
+              }
             }
           }
         }
       }
     }
-  }
-};
+  };
 
-const docRef2 =  doc(db, "users", getCookie("uid"));
-const nameSnap = await getDoc(docRef2);
-let name = nameSnap.data();
+  const docRef2 = doc(db, "users", getCookie("uid"));
+  const nameSnap = await getDoc(docRef2);
+  let name = nameSnap.data();
 
-document.getElementById('auth-data__header').textContent = name["name"];
+  document.getElementById('auth-data__header').textContent = name["name"];
 
 // document.getElementById('auth-data__header').textContent = getCookie("username");
 
-const docRef =  doc(db, "cells", getCookie("uid"));
-const docSnap = await getDoc(docRef);
-let cells = docSnap.data();
+  const docRef = doc(db, "cells", getCookie("uid"));
+  const docSnap = await getDoc(docRef);
+  let cells = docSnap.data();
 
 // await updateDoc(docRef,cells_empty);
-
-let days=["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+  let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 // let cell = cells_list;
-let counter=0;
-while (counter<days.length) {
-  let day=days[counter];
-  let th = document.createElement('th');
-  th.value = day;
-  th.textContent = day;
-  th.text = day;
-  th.className = "day_of_week";
-  document.getElementById('days_list').append(th);
-  counter=counter+1;
+  let counter = 0;
+  while (counter < days.length) {
+    let day = days[counter];
+    let th = document.createElement('th');
+    th.value = day;
+    th.textContent = day;
+    th.text = day;
+    th.className = "day_of_week";
+    document.getElementById('days_list').append(th);
+    counter = counter + 1;
 
 
-}
-
-let counter_days=0;
-let counter_times=0;
-let counter_cells=0;
-while (counter_times<24){
-  counter_days=0;
-  while(counter_days<days.length){
-    if (cells[days[counter_days]][counter_times]=="True"){
-      counter_cells=counter_cells+1;
-    }
-    counter_days=counter_days+1;
   }
-  counter_times=counter_times+1;
+  const docSnapCourse = await getDoc(doc(db, "bought_courses", getCookie("uid")));
+  let courses = docSnapCourse.data();
+  let course_to_show = courses["course_names"][0];
+  // alert(course_to_show);
+  let counter_days = 0;
+  let counter_times = 0;
+  let counter_cells = 0;
+  while (counter_times < 24) {
+    counter_days = 0;
+    while (counter_days < days.length) {
+      if (cells[days[counter_days]][counter_times] == "True") {
+        counter_cells = counter_cells + 1;
+      }
+      counter_days = counter_days + 1;
+    }
+    counter_times = counter_times + 1;
 
-}
-let difficulty=4;
-let num_of_lessons_per_week=6-difficulty;
-let counter_of_num=0;
-let interval=parseInt(counter_cells/num_of_lessons_per_week);
-let counter_of_used_cells=0;
+  }
+  let difficulty = 4;
+  let num_of_lessons_per_week = 6 - difficulty;
+  let counter_of_num = 0;
+  let interval = parseInt(counter_cells / num_of_lessons_per_week);
+  let counter_of_used_cells = 0;
 // alert(counter_cells);
-counter=0;
+  counter = 0;
 // let arr=[0,2,4];
 // let arr_counter=0;
 // let cell2=cells;
-counter_days=0;
-counter_times=0;
-while (counter_times<24){
-  counter_days=0;
-  while(counter_days<days.length){
-    let temp_counter=counter_times+1;
-    let time = counter_times+":00-"+temp_counter+":00";
-    let td=document.createElement('td');
-    td.value=cells[days[counter_days]][counter_times];
-    if (td.value=="True"){
-      if (counter==counter_of_used_cells) {
-        if(counter_of_num<num_of_lessons_per_week){
-        // if (arr_counter <= arr[arr.length - 2]) {
-          let a = document.createElement('a');
-          a.textContent = "Foundations of math";
-          a.href = "course_information_page.html";
-          a.className="course_link";
-          td.append(a);
-          // alert(counter_of_used_cells);
-          counter_of_used_cells=counter_of_used_cells+interval;
-          counter_of_num=counter_of_num+1;
-          // arr_counter=arr_counter+1;
+  counter_days = 0;
+  counter_times = 0;
+  while (counter_times < 24) {
+    counter_days = 0;
+    while (counter_days < days.length) {
+      let temp_counter = counter_times + 1;
+      let time = counter_times + ":00-" + temp_counter + ":00";
+      let td = document.createElement('td');
+      td.value = cells[days[counter_days]][counter_times];
+      if (td.value == "True") {
+        if (counter == counter_of_used_cells) {
+          if (counter_of_num < num_of_lessons_per_week) {
+            // if (arr_counter <= arr[arr.length - 2]) {
+            let a = document.createElement('a');
+            if (course_to_show != undefined) {
+              a.textContent = course_to_show;//"Foundations of math";}
+              a.href = "course_information_page.html";
+            } else {
+              td.textContent = "ячейка";
+            }
 
-      }
-        else{
-          td.textContent="ячейка";
+
+            a.className = "course_link";
+            td.append(a);
+            // alert(counter_of_used_cells);
+            counter_of_used_cells = counter_of_used_cells + interval;
+            counter_of_num = counter_of_num + 1;
+            // arr_counter=arr_counter+1;
+
+          } else {
+            td.textContent = "ячейка";
+
+          }
+        } else {
+          td.textContent = "ячейка";
 
         }
+        counter = counter + 1;
+
+        td.className = "used_cell"
       }
-      else{
-        td.textContent="ячейка";
+      if (td.value == "False") {
+        // td.textContent="empty";
 
+        td.className = "unused_cell"
       }
-      counter = counter + 1;
+      temp_counter = counter_times + 1;
+      let id = counter_times + ":00-" + temp_counter + ":00";
+      if (document.getElementById(id)) {
 
-      td.className="used_cell"
-  }
-    if (td.value=="False"){
-      // td.textContent="empty";
 
-      td.className="unused_cell"
+        document.getElementById(id).append(td);
+      }
+      counter_days = counter_days + 1;
     }
-    temp_counter=counter_times+1;
-    let id=counter_times+":00-"+temp_counter+":00";
-    if (document.getElementById(id)) {
+    counter_times = counter_times + 1;
 
-
-      document.getElementById(id).append(td);
-    }
-    counter_days=counter_days+1;
   }
-  counter_times=counter_times+1;
-
-}
 //
 // while(cell2) {
 //   let times = cell2.times;
@@ -231,22 +296,26 @@ while (counter_times<24){
 //
 // }
 
-let colors_courses = ["#FFB1B1", "#FFE5B1", "#BAFFE6", "#AFF5FF"];
+  let colors_courses = ["#FFB1B1", "#FFE5B1", "#BAFFE6", "#AFF5FF"];
 
-let counter_color = 0;
-let counter_course = 0;
-let theme = themes__list;
+  let counter_color = 0;
+  let counter_course = 0;
+  let theme = themes__list;
 
 
-document.querySelector('.log_out').onclick = function (e) {
-  document.cookie = "uid" + "=" + "";
-  document.cookie = "username" + "=" + "";
-};
+// document.querySelector('.log_out').onclick = function (e) {
+//   document.cookie = "uid" + "=" + "";
+//   document.cookie = "username" + "=" + "";
+// };
 
 // document.querySelector('.courses-list').onclick = function (e) {
 //   sessionStorage.setItem('courseName', e.target.textContent); // Сохранить значение в sessionStorage
 // };
 
-document.querySelector('.schedule-table').onclick = function(e) {
-  sessionStorage.setItem('courseName', e.target.textContent); // Сохранить значение в sessionStorage
-};
+  document.querySelector('.schedule-table').onclick = function (e) {
+    sessionStorage.setItem('courseName', e.target.textContent); // Сохранить значение в sessionStorage
+   };
+// }
+// else{
+//
+// }

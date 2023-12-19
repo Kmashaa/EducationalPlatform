@@ -4,7 +4,7 @@ import { doc , getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.21
 
 
 const authForm = document.getElementById('authForm');
-
+alert(getCookie("uid"));
 authForm.addEventListener('submit', async(e) => {
   e.preventDefault();
   const users_name = document.getElementById('users_name').value;

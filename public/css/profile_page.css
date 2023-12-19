@@ -24,7 +24,7 @@ body {
   padding-left: 30px;
 }
 
-.button__courses, .button__settings, .button__log-out {
+.button__courses, .button__settings, .button__log-out, .button__change_name, .button__cell {
   color: white;
   text-decoration: none;
   flex-wrap: wrap;
@@ -53,9 +53,19 @@ body {
   background: #FF007A;
 }
 
+.button__change_name{
+  background: #AD00FF;
+  font-size: 24px;
+}
+
+.button__cell{
+  background: gold;
+}
+
 .schedule {
-  overflow: hidden;
-  overflow-x: scroll;
+  margin-left: 55px;
+  /*overflow: hidden;*/
+  /*overflow-x: scroll;*/
 }
 
 .courses {
