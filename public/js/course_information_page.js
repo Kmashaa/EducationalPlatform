@@ -1,5 +1,6 @@
 import {db, getCookie} from "./auth.js"
 import { doc , getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
+
 let course_name = sessionStorage.getItem('courseName');
 function checkAvailability(arr, val) {
   return arr.some(function (arrVal) {
@@ -97,7 +98,7 @@ else {
   let data = docSnap.data();
   let cond=checkAvailability(data["course_names"],course_name);
   if (!cond) {
-    document.getElementById('button__lessons').style.display = "None";
+    //document.getElementById('button__lessons').style.display = "None";
     document.getElementById('button__test').style.display = "None";
   }
   else if (cond){
