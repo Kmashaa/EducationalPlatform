@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Settings</title>
+  <title>Change name</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/settings_page.css"/>
+  <link rel="stylesheet" href="css/sign_in_page.css"/>
   <link rel="stylesheet" href="css/header.css"/>
 </head>
 <body>
@@ -29,37 +29,35 @@
   </nav>
 </header>
 
-<main class="page-settings__main">
+
+
+<main class="page-signin__main">
+
   <section class="main__auth-data">
-    <header class="auth-data__header">
-      Settings
+    <header class="auth-data__header" id="auth-data__header">
+      Change name
     </header>
     <main class="auth-data__main">
+
+
       <form class="main__form" action="profile_page.html" method="get" id="authForm" name="signin">
-        <br>
-        <label for="name">Name</label><br>
+        <label for="users_name">New name</label><br>
         <input
           class="form__input-field"
-          id="name"
-          name="name"
-          /><br><br>
+          id="users_name"
+          name="users_name"
+          type="text"
+          required/><br>
+
         <button class="form__submit-btn" type="submit">
-          <b class="submit-btn__text">Confirm</b>
+          <b class="submit-btn__text">Change</b>
         </button>
       </form>
-      <a class="button__back" href="profile_page.html">Back</a>
     </main>
   </section>
 </main>
-<footer class="footer">
-  <ul>
-    <li>© 2023 ООО «ВСЕ ЗНАНИЯ» УНП 193441893</li>
-    <li>ООО «ВСЕ ЗНАНИЯ» Зарегистрировано Минским горисполкомом 09.07.2020. 220004, г. Минск, ул. К. Цеткин, 24-76.</li>
-    <li>Режим работы предприятия: пн.-пт. 09.00-18.00, вых. дн. – сб., вс. Режим работы сайта – круглосуточно. E-mail ООО «ВСЕ ЗНАНИЯ» support@hh.by</li>
-    <li>р/с BY51ALFA30122660000010270000 ЗАО "Альфа-банк" 220013 г. Минск, ул. Сурганова, 43‑47</li>
-  </ul>
-</footer>
-<script type="module" src="js/header.js"></script>
 
+<script type="module" src="js/header.js"></script>
+<script type="module" src="js/change_name_page.js"></script>
 </body>
 </html>

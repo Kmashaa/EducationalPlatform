@@ -1,7 +1,15 @@
 // localStorage.setItem('my_courses',["Learning biology"]);
 // localStorage.setItem('new_comments',["the best"]);
+import { doc , getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
 
+import {db, getCookie} from "./auth.js";
 
+// const roleRef=await getDoc(doc(db,"users",getCookie("uid")));
+// const roleSnap=roleRef.data()
+// const users_role=roleSnap["role"];
+// if (users_role=="moderator") {
+//   window.location.href="profile_page.html";
+// }
 
 
 let themes__list = {

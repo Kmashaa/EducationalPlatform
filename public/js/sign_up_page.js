@@ -14,6 +14,7 @@ authForm.addEventListener('submit',(e) => {
     return;
   }
   else {
+
     register(email,password,users_name);}
 });
 

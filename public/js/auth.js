@@ -233,15 +233,22 @@ export function getCookie(name) {
   return null;
 }
 
-export function authorize(email,password){
+export async function authorize(email,password){
   signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
+    .then(async (userCredential) => {
       // Signed in
       const user = userCredential.user;
 
       document.cookie = "uid" + "=" + user.uid;
       document.cookie="username"+"="+email.split("@")[0];
-      window.location.href="index.html";
+      const roleReff=await getDoc(doc(db,"users",user.uid));
+      const roleSnapp=roleReff.data()
+      const users_role=roleSnapp["role"];
+      if (users_role=="moderator") {
+        window.location.href="profile_page.html";
+      }
+      else{
+      window.location.href="index.html";}
     })
     .catch((error) => {
       window.alert("Wrong email or password. Please, try again. ");
@@ -256,9 +263,15 @@ export function register(email,password,name){
       const user = userCredential.user;
       document.cookie = "uid" + "=" + user.uid;
       document.cookie="username"+"="+email.split("@")[0];
-      await setDoc(doc(db, "users", user.uid), {
-        name: name
-      });
+      const docRef2 =  doc(db, "cells", "empty_cells_list");
+      const nameSnap = await getDoc(docRef2);
+      let cells = nameSnap.data();
+      let cells_data=cells.value;
+      await setDoc(doc(db, "cells", user.uid), cells );
+      let new_doc_data={"name":name,"role":"user","email":email};
+      await setDoc(doc(db, "users", user.uid), new_doc_data);
+      await setDoc(doc(db, "bought_courses", user.uid), {"course_names":[]});
+
       window.location.href="profile_page.html";
     })
     .catch((error) => {

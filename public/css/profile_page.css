@@ -24,7 +24,7 @@ body {
   padding-left: 30px;
 }
 
-.button__courses, .button__settings, .button__log-out {
+.button__courses, .button__settings, .button__log-out, .button__change_name, .button__cell {
   color: white;
   text-decoration: none;
   flex-wrap: wrap;
@@ -53,9 +53,19 @@ body {
   background: #FF007A;
 }
 
+.button__change_name{
+  background: #AD00FF;
+  font-size: 24px;
+}
+
+.button__cell{
+  background: gold;
+}
+
 .schedule {
-  overflow: hidden;
-  overflow-x: scroll;
+  margin-left: 55px;
+  /*overflow: hidden;*/
+  /*overflow-x: scroll;*/
 }
 
 .courses {
@@ -323,4 +333,83 @@ body {
   .item__title {
     min-width: 150px;
   }
+}
+
+
+.item__name{
+
+  width: 30%;
+  position: relative;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 25px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.5px;
+  color: #000000;
+  margin-left: 10px;
+  padding-top: 10px;
+  padding-left: 10px;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-content: flex-start;
+  padding-bottom: 10px;
+  height: auto;
+}
+
+.item__description{
+  width: 40%;
+  font-weight: 500;
+  font-size: 25px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.5px;
+  color: #000000;
+  align-content: flex-start;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+
+.courses-list__item1, .courses-list__item2, .courses-list__item3, .courses-list__item4, .courses-list__item5 {
+  min-width: 200px;
+  left: 0px;
+  top: 0.01px;
+  border-radius: 20px;
+  margin-left: 10px;
+  margin-top: 15px;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  line-height: 30px;
+}
+
+.courses-list{
+  height: auto;
+  list-style-type: none;
+  overflow: hidden;
+  overflow-y: scroll;
+  display: contents;
+}
+
+.courses-list__item1{
+  background: rgba(113, 255, 243, 0.73);
+  width: 800px;
+  height: 70px;
+}
+
+.main__courses{
+  height:350px;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+.main__courses::-webkit-scrollbar {
+  display: none;
+}
+
+.courses-list{
+  height: auto;
+  list-style-type: none;
 }

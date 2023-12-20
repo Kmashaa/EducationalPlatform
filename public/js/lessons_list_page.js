@@ -1,3 +1,12 @@
+import {db, getCookie} from "./auth.js"
+import { doc , getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
+
+function checkAvailability(arr, val) {
+  return arr.some(function (arrVal) {
+    return val === arrVal;
+  });
+}
+
 let course_name = sessionStorage.getItem('courseName');
 let buttonName=sessionStorage.getItem('buttonName');
 document.getElementById("lesson-data__header").textContent=course_name+": "+buttonName;
@@ -97,35 +106,73 @@ let themes__list = {
   }
 };
 
+const docRef =  doc(db, "bought_courses", getCookie("uid"));
+const docSnap = await getDoc(docRef);
+let data = docSnap.data();
+let cond=checkAvailability(data["course_names"],course_name);
+let counter_lessons=0;
+if (!cond) {
+  counter_lessons=-10;
+  //document.getElementById('button__lessons').style.display = "None";
+  //document.getElementById('button__test').style.display = "None";
+}
+
 let colors_lessons=["#FFB1B1","#FFE5B1","#BAFFE6","#AFF5FF"];
 let count=0;
 let theme=themes__list;
 while(theme){
   let course=theme.courses;
   while (course) {
-    if (course.name==course_name){
-      let lesson=course.lessons;
-      while (lesson){
-        let li=document.createElement('li');
-        li.className='lessons-list__item';
+    if (course.name==course_name) {
 
-        let a=document.createElement('a');
-        a.href="lesson_page.html";
-        a.className="item__name";
-        a.textContent=lesson.name;
-        li.append(a);
-        let col=colors_lessons[count];
-        li.style.background=col;
-        if (count==colors_lessons.length-1){
-          count=0;
+
+      let lesson = course.lessons;
+      while (lesson) {
+        if (counter_lessons==-10) {
+          counter_lessons = counter_lessons + 1;
+          let li = document.createElement('li');
+          li.className = 'lessons-list__item';
+
+          let a = document.createElement('a');
+          a.href = "lesson_page.html";
+          a.className = "item__name";
+          a.textContent = lesson.name;
+          li.append(a);
+          let col = colors_lessons[count];
+          li.style.background = col;
+          if (count == colors_lessons.length - 1) {
+            count = 0;
+          } else {
+            count = count + 1;
+          }
+
+          document.getElementById('lessons-list').append(li);
+
+        }else{
+          if (counter_lessons>=0){
+            let li = document.createElement('li');
+            li.className = 'lessons-list__item';
+
+            let a = document.createElement('a');
+            a.href = "lesson_page.html";
+            a.className = "item__name";
+            a.textContent = lesson.name;
+            li.append(a);
+            let col = colors_lessons[count];
+            li.style.background = col;
+            if (count == colors_lessons.length - 1) {
+              count = 0;
+            } else {
+              count = count + 1;
+            }
+
+            document.getElementById('lessons-list').append(li);
+          }
         }
-        else{
-          count=count+1;}
-
-        document.getElementById('lessons-list').append(li);
-        lesson=lesson.next;
+        lesson = lesson.next;
       }
     }
+
     course=course.next;
   }
   theme=theme.next;

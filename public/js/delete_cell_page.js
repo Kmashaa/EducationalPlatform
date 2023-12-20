@@ -105,7 +105,7 @@ let cells_list={
 };
 
 
-const docRef2=doc(db, "cells", "zB1up6EBeuYlPQYXj31kKhlhQCx2");
+const docRef2=doc(db, "cells", getCookie("uid"));
 const docSnap = await getDoc(docRef2);
 let cells = docSnap.data();
 let counter=0;

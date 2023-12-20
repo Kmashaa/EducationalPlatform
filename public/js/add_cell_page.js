@@ -116,7 +116,7 @@ import {addDoc,getFirestore,collection} from "https://www.gstatic.com/firebasejs
 //   "next":null
 // };
 // const docRef =  doc(db, "cells", "empty_cells_list");
-const docRef2=doc(db, "cells", "zB1up6EBeuYlPQYXj31kKhlhQCx2");
+const docRef2=doc(db, "cells", getCookie("uid"));
 const docSnap = await getDoc(docRef2);
 let cells = docSnap.data();
 // await updateDoc(docRef2,cells_empty);
