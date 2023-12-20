@@ -122,9 +122,7 @@ const roleRef=await getDoc(doc(db,"users",getCookie("uid")));
 const roleSnap=roleRef.data()
 const users_role=roleSnap["role"];
 if (users_role!="moderator") {
-  let dc =document.getElementById('button_learning_platform');
-  document.getElementById('button_learning_platform').style.display = "None";
-  document.getElementById('button_home_page').style.display = "None";
+
 
 
 
@@ -189,6 +187,9 @@ document.querySelector('.buttons__list').onclick = function (e) {
 //   sessionStorage.setItem('buttonName', e.target.textContent); // Сохранить значение в sessionStorage
 // };
 }else{
+  let dc =document.getElementById('button_learning_platform');
+  document.getElementById('button_learning_platform').style.display = "None";
+  document.getElementById('button_home_page').style.display = "None";
   document.getElementById('button__lessons').textContent = "Lessons";
   document.getElementById('button__test').textContent = "Test";
   document.getElementById('button__pay').style.display = "None";
