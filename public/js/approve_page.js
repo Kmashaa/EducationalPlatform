@@ -29,7 +29,7 @@ for (let i=0;i<themes_list.length;i+=1){
 const docRef=await getDoc(doc(db,"themes","courses"));
 const docSnap=docRef.data()
 new_theme["next"]=docSnap;
-//await updateDoc(doc(db,"themes","courses"),new_theme);
+await updateDoc(doc(db,"themes","courses"),new_theme);
 
 console.log(themes_list);
 if(element_counter>=0){

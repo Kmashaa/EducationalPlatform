@@ -319,7 +319,7 @@ if (users_role!="moderator") {
 else{
   document.getElementById("button__change_name").textContent="Unapproved courses";
   document.getElementById("button__change_name").href="approve_courses_page.html";
-
+  document.getElementById("button_add-course").style.display="None";
   document.getElementById('schedule__header').textContent = "Users";
   let ul =document.createElement("ul");
   ul.className="courses-li";

@@ -372,7 +372,7 @@ if (users_role!="moderator") {
 
               let t = document.createElement('t');
               t.scope = "row";
-              if (answer.correctness="1"){
+              if (answer.correctness=="1"){
                 t.textContent = answer.text+" (correct)";
 
               }
