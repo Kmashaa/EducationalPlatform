@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/sign_up_page.css"/>
+  <link rel="stylesheet" href="css/header.css"/>
+</head>
+<body>
+<form class="main__form" action="add_test.html" method="post" id="addCourseForm" name="addTest">
+  <label for="name">Name</label><br>
+  <input
+    class="form__input-field"
+    id="name"
+    name="email"
+    type="text"
+    required/><br>
+  <label for="theme">Theme</label><br>
+  <input
+    class="form__input-field"
+    id="theme"
+    name="users_name"
+    type="text"
+    required/><br>
+  <label for="difficulty">Difficulty</label><br>
+  <input
+    class="form__input-field"
+    id="difficulty"
+    name="difficulty"
+    type="number"
+    max = "5"
+    min="1"
+    minlength="8"
+    required/><br>
+  <label for="descr">Description</label><br>
+  <input
+    class="form__input-field"
+    id="descr"
+    name="descr"
+    type="text"
+    minlength="8"
+    required/><br>
+  <button class="form__submit-btn" type="submit">
+    <b class="submit-btn__text">Add tests</b>
+  </button>
+</form>
+<script type="module" src="js/add_course.js"></script>
+</body>
+</html>

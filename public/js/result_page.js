@@ -33,7 +33,7 @@ if (result === "true") {
 
 } else {
   document.getElementById("result-data__header").textContent = "Bad result";
-  res_text.textContent = "You haven't completed course: " + course_name + ". Try again"
+  res_text.textContent = "You haven't completed test of course: " + course_name + ". Try again"
 }
 localStorage.setItem('my_courses',[]);
 

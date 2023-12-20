@@ -1,3 +1,6 @@
+import {getCookie, database, dbRef, db} from "./auth.js";
+import { doc , getDoc, updateDoc,setDoc ,collection,getDocs} from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
+
 let lesson_name=sessionStorage.getItem('lessonName');
 let course_name=sessionStorage.getItem('courseName');
 document.getElementById('lesson-data__header').textContent=lesson_name;
@@ -115,7 +118,9 @@ let themes__list = {
     }
   }
 };
-
+const docRef=await getDoc(doc(db,"themes","courses"));
+const docSnap=docRef.data()
+themes__list=docSnap;
 let theme=themes__list;
 while(theme){
   let course=theme.courses;

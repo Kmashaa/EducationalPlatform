@@ -1,3 +1,6 @@
+import {getCookie, database, dbRef, db} from "./auth.js";
+import { doc , getDoc, updateDoc,setDoc ,collection,getDocs} from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
+
 let theme_name = sessionStorage.getItem('themeName');
 
 let themes__list = {
@@ -65,7 +68,9 @@ let themes__list = {
       }
     }}
 };
-
+const docRef=await getDoc(doc(db,"themes","courses"));
+const docSnap=docRef.data()
+themes__list=docSnap;
 let colors_courses=["#FFB1B1","#FFE5B1","#BAFFE6","#AFF5FF"];
 
 let count=0;

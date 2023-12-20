@@ -1,5 +1,5 @@
-import {db, getCookie} from "./auth.js"
-import { doc , getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
+import {getCookie, database, dbRef, db} from "./auth.js";
+import { doc , getDoc, updateDoc,setDoc ,collection,getDocs} from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
 
 function checkAvailability(arr, val) {
   return arr.some(function (arrVal) {
@@ -105,7 +105,9 @@ let themes__list = {
     }
   }
 };
-
+const docReff=await getDoc(doc(db,"themes","courses"));
+const docSnapp=docReff.data()
+themes__list=docSnapp;
 const docRef =  doc(db, "bought_courses", getCookie("uid"));
 const docSnap = await getDoc(docRef);
 let data = docSnap.data();
@@ -116,6 +118,7 @@ if (!cond) {
   //document.getElementById('button__lessons').style.display = "None";
   //document.getElementById('button__test').style.display = "None";
 }
+
 
 let colors_lessons=["#FFB1B1","#FFE5B1","#BAFFE6","#AFF5FF"];
 let count=0;

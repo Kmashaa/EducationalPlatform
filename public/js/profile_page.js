@@ -4,7 +4,7 @@ import { doc , getDoc, updateDoc,setDoc ,collection,getDocs} from "https://www.g
 import {child, get, ref, set} from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
 
 
-// alert(getCookie("uid"));
+alert(getCookie("uid"));
 const roleRef=await getDoc(doc(db,"users",getCookie("uid")));
 const roleSnap=roleRef.data()
 const users_role=roleSnap["role"];
@@ -317,6 +317,9 @@ if (users_role!="moderator") {
    };
 }
 else{
+  document.getElementById("button__change_name").textContent="Unapproved courses";
+  document.getElementById("button__change_name").href="approve_courses_page.html";
+
   document.getElementById('schedule__header').textContent = "Users";
   let ul =document.createElement("ul");
   ul.className="courses-li";

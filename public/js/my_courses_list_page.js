@@ -68,6 +68,9 @@ let themes__list = {
       }
     }}
 };
+const docRef1=await getDoc(doc(db,"themes","courses"));
+const docSnap1=docRef1.data()
+themes__list=docSnap1;
 
 let counter_color=0;
 let counter_course=0;
