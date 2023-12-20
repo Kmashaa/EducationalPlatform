@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/sign_up_page.css"/>
+<link rel="stylesheet" href="css/header.css"/>
+</head>
+<body>
+<header class="header">
+  <nav class="nav">
+    <div class="buttons_home">
+      <ul class="home__items">
+        <li class="home__item">
+          <a class="button_learning_platform" id="button_learning_platform" href="index.html"> Learning</br>platform </a>
+        </li>
+        <li class="home__item">
+          <a class="button_home_page" id="button_home_page" href="index.html"> Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="buttons_profile" id="buttons_profile"></div>
+    <div class="buttons_sign" id="buttons_sign"></div>
+
+
+  </nav>
+</header>
+<header class="auth-data__header">
+  Add new lessons!!!
+</header>
+<form class="main__form" action="add_test.html" method="post" id="addLessonsForm" name="addTest">
+  <ul  id="lessons_list">
+    <li>
+  <label for="name">Lesson name</label><br>
+  <input
+    class="form__input-field"
+    id="name"
+    name="name"
+    type="text"
+    required/><br>
+  <label for="text">Content</label><br>
+  <textarea
+    class="form__input-field"
+    id="text"
+    name = "text"
+    required></textarea><br>
+    </li>
+  </ul>
+  <button id = "add_lesson" class="form__submit-btn" type="button">
+    <b class="submit-btn__text">Add lesson</b>
+  </button>
+  <button class="form__submit-btn" type="submit">
+    <b class="submit-btn__text">Next</b>
+  </button>
+
+</form>
+<script type="module" src="js/add_lesson.js"></script>
+</body>
+</html>

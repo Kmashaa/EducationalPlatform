@@ -29,6 +29,7 @@ async function AddTestToDb(name, course_name, theme){
         break;
       }
       currCourse.test = {text: "Foundations of history",
+
         questions: null
       };
       await updateDoc(docRef, themes);
