@@ -173,9 +173,12 @@ addTestForm.addEventListener('submit',async (e) => {
       let name = 'radio'+i;
       console.log(name);
       console.log(childNode.children.namedItem(name));
-      var answerRadio = childNode.children.namedItem(name)['value'];
-      if(answerRadio ==="on"){
+      var answerRadio = childNode.children.namedItem(name)['checked'];
+      if(answerRadio){
         answerRadio = "1";
+      }
+      else{
+        answerRadio = "0";
       }
       var answerJson = {
         text: answerText,
@@ -206,6 +209,8 @@ addTestForm.addEventListener('submit',async (e) => {
   const test_name = sessionStorage.getItem('test_name');
   const diff = sessionStorage.getItem('diff');
   const descr = sessionStorage.getItem('description');
+  var less = sessionStorage.getItem('lessons');
+  less = JSON.parse(less);
   let new_theme= {
         name:theme,
         courses: {
@@ -218,11 +223,7 @@ addTestForm.addEventListener('submit',async (e) => {
           diff: diff,
 
           href: "course_information_page.html",
-          lessons: {
-            name: "new_lesson",
-            text: "new_lesson_text",
-            next: null
-          },
+          lessons:less,
           test: {
             text: test_name,
             questions: json,
