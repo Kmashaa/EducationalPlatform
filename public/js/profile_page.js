@@ -1,5 +1,5 @@
 import {getCookie, database, dbRef, db} from "./auth.js";
-import { doc , getDoc, updateDoc,setDoc } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
+import { doc , getDoc, updateDoc,setDoc ,collection,getDocs} from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
 
 import {child, get, ref, set} from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
 
@@ -8,7 +8,7 @@ import {child, get, ref, set} from "https://www.gstatic.com/firebasejs/9.21.0/fi
 const roleRef=await getDoc(doc(db,"users",getCookie("uid")));
 const roleSnap=roleRef.data()
 const users_role=roleSnap["role"];
-//if (users_role!="moderator") {
+if (users_role!="moderator") {
   document.getElementById('schedule__header').textContent = "Schedule";
   let div_button1 = document.createElement('div');
   div_button1.className="log_out";
@@ -315,7 +315,68 @@ const users_role=roleSnap["role"];
   document.querySelector('.schedule-table').onclick = function (e) {
     sessionStorage.setItem('courseName', e.target.textContent); // Сохранить значение в sessionStorage
    };
-// }
-// else{
-//
-// }
+}
+else{
+  document.getElementById('schedule__header').textContent = "Users";
+  let ul =document.createElement("ul");
+  ul.className="courses-li";
+  ul.id="courses-list";
+  let sect = document.createElement("section");
+  sect.className="main__courses";
+  sect.id="main__courses";
+
+  const collectionRef = collection(db,'users');
+  // collectionRef.getDocs()
+  getDocs(collectionRef)
+    .then(async (querySnapshot) => {
+      querySnapshot.forEach(async  (docData) => {
+        const docRef =  doc(db,"users",docData.id);
+        const docSnap = await getDoc(docRef);
+        const roleSnap=docSnap.data();
+        const users_name=roleSnap["name"];
+        let li =document.createElement("li");
+        li.className="courses-list__item1";
+        //li.textContent=users_name;
+
+        let div1 =document.createElement("a");
+        div1.className="item__name";
+        div1.textContent=roleSnap["name"];
+
+        let div2=document.createElement("div");
+        div2.className="item__description";
+        div2.textContent=roleSnap["email"];
+
+
+        let div3 =document.createElement("a");
+        div3.className="button__change_name";
+        div3.textContent="Change name";
+        div3.style.marginTop="0px";
+        div3.href="change_name_page.html";
+        div3.id=docData.id;
+        li.append(div1);
+        li.append(div2);
+        li.append(div3);
+        ul.append(li);
+
+
+
+        // // doc.data() is your document data
+        // //alert(doc.data());
+        //alert(docData.id, ' => ', docData.data());
+      });
+      sect.append(ul);
+      document.getElementById("schedule-data__main").append(sect);
+      document.querySelector('.courses-li').onclick = async function(e) {
+        sessionStorage.setItem('user_id', e.target.id); // Сохранить значение в sessionStorage
+        //alert(e.target.id);
+      };
+    })
+    .catch((error) => {
+      console.log('Error getting documents: ', error);
+    });
+
+
+  let vkbjnlk= "hbkjlk";
+
+}
+

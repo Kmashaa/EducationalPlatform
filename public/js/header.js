@@ -1,7 +1,17 @@
-import {getCookie} from "./auth.js"
+import {db, getCookie} from "./auth.js"
+import { doc , getDoc, updateDoc,setDoc ,collection,getDocs} from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
 
 
 if(getCookie("uid")){
+  const roleRef=await getDoc(doc(db,"users",getCookie("uid")));
+  const roleSnap=roleRef.data()
+  const users_role=roleSnap["role"];
+  if (users_role=="moderator") {
+    let dc =document.getElementById('button_learning_platform');
+    document.getElementById('button_learning_platform').style.display = "None";
+    document.getElementById('button_home_page').style.display = "None";
+
+  }
   let button__profile=document.createElement('a');
   button__profile.className="button__profile";
   button__profile.textContent="Profile";
